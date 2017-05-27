@@ -1,4 +1,11 @@
+net\netty\TestNetty$1.class
+net\netty\TestNetty.class
+data\excel\TestPOI$1.class
+database\redis\TestUser.class
 database\redis\JedisAccess.class
 database\redis\RedissonAccess.class
+net\netty\TimeServerHandler.class
+net\netty\DiscardServerHandler.class
 data\excel\TestPOI.class
-database\redis\TestUser.class
+net\netty\TimeServerHandler$1.class
+net\netty\EchoServerHandler.class

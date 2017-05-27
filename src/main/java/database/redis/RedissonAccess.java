@@ -17,7 +17,7 @@ public class RedissonAccess
 	public static void main(String[] args)
 	{
 		Config redisConfig = new Config();
-		redisConfig.setCodec(new FstCodec()).useSingleServer().setAddress("127.0.0.1:6379");
+		redisConfig.setCodec(new FstCodec()).useSingleServer().setAddress("127.0.0.1:6379").setPassword("1qaz2wsx").setDatabase(1);
 		RedissonClient client = Redisson.create(redisConfig);
 //		List<Object> res = client.getList("mlist");
 //		for(Object o : res)
