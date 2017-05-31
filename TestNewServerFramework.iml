@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -12,6 +12,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.redisson:redisson:3.4.2" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.10.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.10.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.10.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.10.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.10.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.10.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.cache:cache-api:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-stream:2.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:2.0.8.RELEASE" level="project" />
@@ -44,5 +50,8 @@
     <orderEntry type="library" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.virtuald:curvesapi:1.04" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.1" level="project" />
   </component>
 </module>
