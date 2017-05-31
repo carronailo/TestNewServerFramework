@@ -17,7 +17,15 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter
 	public void channelRead(final ChannelHandlerContext ctx, Object msg)
 	{
 		System.out.println("recv: " + ((ByteBuf)msg).toString(CharsetUtil.UTF_8));
-		ctx.write(msg);
+		final ChannelFuture f = ctx.writeAndFlush(msg);
+		f.addListener(new ChannelFutureListener()
+		{
+			@Override
+			public void operationComplete(ChannelFuture future)
+			{
+				assert f == future;
+			}
+		});
 	}
 
 	@Override
