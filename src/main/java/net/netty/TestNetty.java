@@ -9,19 +9,16 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-/**
- * Created by CarroNailo on 2017/5/22.
- */
 public class TestNetty
 {
 	private int port;
 
-	public TestNetty(int port)
+	private TestNetty(int port)
 	{
 		this.port = port;
 	}
 
-	public void run() throws Exception
+	private void run() throws Exception
 	{
 		EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 		EventLoopGroup workerGroup = new NioEventLoopGroup();

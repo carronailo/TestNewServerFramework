@@ -4,9 +4,6 @@ import redis.clients.jedis.Jedis;
 
 import java.util.List;
 
-/**
- * Created by CarroNailo on 2017/5/15.
- */
 public class JedisAccess
 {
 	public static void main(String[] args)

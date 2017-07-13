@@ -8,9 +8,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
-/**
- * Created by CarroNailo on 2017/5/22.
- */
 public class EchoServerHandler extends ChannelInboundHandlerAdapter
 {
 	@Override
@@ -18,13 +15,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter
 	{
 		System.out.println("recv: " + ((ByteBuf)msg).toString(CharsetUtil.UTF_8));
 		final ChannelFuture f = ctx.writeAndFlush(msg);
-		f.addListener(new ChannelFutureListener()
+		f.addListener((ChannelFutureListener) future ->
 		{
-			@Override
-			public void operationComplete(ChannelFuture future)
-			{
-				assert f == future;
-			}
+			assert f == future;
 		});
 	}
 
