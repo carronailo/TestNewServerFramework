@@ -11,6 +11,18 @@ import io.netty.util.CharsetUtil;
 public class EchoServerHandler extends ChannelInboundHandlerAdapter
 {
 	@Override
+	public void channelActive(final ChannelHandlerContext ctx)
+	{
+		System.out.println("conn: online " + ctx.channel().remoteAddress().toString());
+	}
+
+	@Override
+	public void channelInactive(final ChannelHandlerContext ctx)
+	{
+		System.out.println("conn: offline " + ctx.channel().remoteAddress().toString());
+	}
+
+	@Override
 	public void channelRead(final ChannelHandlerContext ctx, Object msg)
 	{
 		System.out.println("recv: " + ((ByteBuf)msg).toString(CharsetUtil.UTF_8));
