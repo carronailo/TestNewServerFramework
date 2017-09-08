@@ -7,8 +7,8 @@ import net.netty.messages.RPC;
 /**
  * Created by CarroNailo on 2017/9/7 17:47 for TestNewServerFramework.
  */
-@RPC(CID = CID.CITY, MID = MID.CITY_EnterScene)
-public class EnterSceneMsg
+@RPC(CID = CID.CITY, MID = MID.ServerSide.CITY_SomeoneEnterScene)
+public class SomeoneEnterSceneMsg
 {
 	public long roleID;
 	public short roleTemplateID;

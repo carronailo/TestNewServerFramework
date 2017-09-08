@@ -92,7 +92,7 @@ public class MultiClient
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception
 				{
-//					ch.pipeline().addLast(new InternalClientEncoder());
+					ch.pipeline().addLast(new InternalClientEncoder());
 					ch.pipeline().addLast(new InternalClientDecoder());
 					ch.pipeline().addLast(new InternalClientHandler());
 				}

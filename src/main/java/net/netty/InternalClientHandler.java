@@ -1,14 +1,12 @@
 package net.netty;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import javafx.util.Pair;
 import net.netty.messages.inbound.*;
+import net.netty.messages.outbound.*;
 
-import java.nio.charset.Charset;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -88,8 +86,8 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			case "EchoMsg":
 				HandleEcho(ctx, (EchoMsg) msg);
 				break;
-			case "EnterSceneMsg":
-				HandlerEnterScene(ctx, (EnterSceneMsg) msg);
+			case "SomeoneEnterSceneMsg":
+				HandlerEnterScene(ctx, (SomeoneEnterSceneMsg) msg);
 				break;
 			default:
 //				System.out.println("未处理的消息");
@@ -99,9 +97,11 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	void HandleEcho(final ChannelHandlerContext ctx, EchoMsg msg)
 	{
-		ByteBuf buf = Unpooled.buffer();
-		PackEchoReturnMsg(msg.Index, System.currentTimeMillis(), buf);
-		ctx.writeAndFlush(buf);
+		EchoReturnMsg newMsg = new EchoReturnMsg();
+		newMsg.index = msg.Index;
+		newMsg.time = System.currentTimeMillis();
+		newMsg.key = "";
+		ctx.writeAndFlush(newMsg);
 	}
 
 	void HandleSecurity(final ChannelHandlerContext ctx)
@@ -112,15 +112,25 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			String username = ((ExtendedNioSocketChannel) channel).username;
 			if (REGISTER)
 			{
-				ByteBuf buf = Unpooled.buffer();
-				PackRegisterMsg(username, buf);
-				ctx.writeAndFlush(buf);
+				RegisterMsg newMsg = new RegisterMsg();
+				newMsg.userName = username;
+				newMsg.password = "111111";
+				newMsg.isAdult = 1;
+				newMsg.serverID = 18;
+				newMsg.deviceIdentifier = "";
+				newMsg.deviceModel = "";
+				ctx.writeAndFlush(newMsg);
 			}
 			else
 			{
-				ByteBuf buf = Unpooled.buffer();
-				PackLoginMsg(username, buf);
-				ctx.writeAndFlush(buf);
+				LoginMsg newMsg = new LoginMsg();
+				newMsg.userName = username;
+				newMsg.password = "111111";
+				newMsg.isAdult = 1;
+				newMsg.serverID = 18;
+				newMsg.deviceIdentifier = "";
+				newMsg.deviceModel = "";
+				ctx.writeAndFlush(newMsg);
 			}
 		}
 		else
@@ -166,9 +176,10 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			String username = ((ExtendedNioSocketChannel) channel).username;
 			int templateID = ((ExtendedNioSocketChannel) channel).templateID;
 			System.out.println(String.format("[%s]创建角色[%d]", username, templateID));
-			ByteBuf buf = Unpooled.buffer();
-			PackCreateRoleMsg(username, buf);
-			ctx.writeAndFlush(buf);
+			CreateRoleMsg newMsg = new CreateRoleMsg();
+			newMsg.roleName = username;
+			newMsg.templateID = templateID;
+			ctx.writeAndFlush(newMsg);
 		}
 		else
 			ctx.close();
@@ -177,16 +188,17 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	void HandleEnterWorld(final ChannelHandlerContext ctx, EnterWorldMsg msg)
 	{
 		System.out.println(String.format("[%d][%d][%s]进入游戏", msg.roleID, msg.roleTemplateID, msg.nickName));
-		ByteBuf buf = Unpooled.buffer();
-		PackRequestDetailMsg(buf);
-		ctx.write(buf);
-		buf = Unpooled.buffer();
-		PackEnterCityMsg(buf);
-		ctx.write(buf);
+		ctx.write(new RequestDetailMsg());
+		EnterSceneMsg newMsg = new EnterSceneMsg();
+		newMsg.sceneID = 1001;
+		newMsg.x = 0;
+		newMsg.y = 0;
+		newMsg.z = 0;
+		ctx.write(newMsg);
 		ctx.flush();
 	}
 
-	void HandlerEnterScene(final ChannelHandlerContext ctx, EnterSceneMsg msg)
+	void HandlerEnterScene(final ChannelHandlerContext ctx, SomeoneEnterSceneMsg msg)
 	{
 		Channel channel = ctx.channel();
 		if (channel instanceof ExtendedNioSocketChannel)
@@ -196,108 +208,5 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		}
 		else
 			ctx.close();
-	}
-
-	void PackEchoReturnMsg(int index, long time, ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(37);
-		buffer.writeByte(1);
-		buffer.writeInt(index);
-		buffer.writeLong(time);
-		buffer.writeShort(0);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
-	}
-
-	void PackRegisterMsg(String username, ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(2);
-		byte[] usernameBytes = username.getBytes(Charset.forName("UTF8"));
-		buffer.writeShort(usernameBytes.length);
-		buffer.writeBytes(usernameBytes);
-		byte[] passwordBytes = "111111".getBytes(Charset.forName("UTF8"));
-		buffer.writeShort(passwordBytes.length);
-		buffer.writeBytes(passwordBytes);
-		buffer.writeInt(1);
-		buffer.writeInt(18);
-		buffer.writeShort(0);
-		buffer.writeShort(0);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
-	}
-
-	void PackLoginMsg(String username, ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		byte[] usernameBytes = username.getBytes(Charset.forName("UTF8"));
-		buffer.writeShort(usernameBytes.length);
-		buffer.writeBytes(usernameBytes);
-		byte[] password = "111111".getBytes(Charset.forName("UTF8"));
-		buffer.writeShort(password.length);
-		buffer.writeBytes(password);
-		buffer.writeInt(1);
-		buffer.writeInt(18);
-		buffer.writeShort(0);
-		buffer.writeShort(0);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
-	}
-
-	void PackCreateRoleMsg(String username, ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(1);
-		byte[] usernameBytes = username.getBytes(Charset.forName("UTF8"));
-		buffer.writeShort(usernameBytes.length);
-		buffer.writeBytes(usernameBytes);
-		buffer.writeInt(1004);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
-	}
-
-	void PackEnterCityMsg(ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(1);
-		buffer.writeByte(0);
-		buffer.writeShort(1001);
-		buffer.writeShort(0);
-		buffer.writeShort(0);
-		buffer.writeShort(0);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
-	}
-
-	private void PackRequestDetailMsg(ByteBuf buffer)
-	{
-		buffer.writeByte(0);
-		buffer.writeByte(0);
-		buffer.writeByte(8);
-		buffer.writeByte(10);
-		int len = buffer.readableBytes();
-		buffer.writerIndex(0);
-		buffer.writeShort(len - 2);
-		buffer.writerIndex(len);
 	}
 }

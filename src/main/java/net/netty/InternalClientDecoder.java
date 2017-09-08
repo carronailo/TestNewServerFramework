@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import net.netty.exceptions.MessageDeserializeException;
+import net.netty.exceptions.MessageDecodeException;
 import net.netty.exceptions.UnsupportMessageFieldException;
 import net.netty.messages.InBoundMessageMap;
 import net.netty.messages.inbound.*;
@@ -63,44 +63,13 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 						return new SHA1Msg();
 				}
 			}
-//			switch (cid)
-//			{
-//				case 0:    // 登录
-//					switch (mid)
-//					{
-//						case 0:        // 登录返回
-//							return DecodeMsg(LoginReturnMsg.class, content);
-//						case 1:
-//							return DecodeMsg(NoRoleMsg.class, content);
-//						case 2:
-//							return DecodeMsg(EnterWorldMsg.class, content);
-//					}
-//					break;
-//				case 1:
-//					switch (mid)
-//					{
-//						case 2:
-//							return DecodeMsg(EnterSceneMsg.class, content);
-//					}
-//					break;
-//				case 37:
-//					if (mid >= 2 && mid <= 5)
-//						return new SecurityMsg();
-//					else if (mid >= 20 && mid <= 25)
-//						return new SHA1Msg();
-//					else if (mid == 1)
-//						return DecodeMsg(EchoMsg.class, content);
-//					break;
-//				default:
-//					break;
-//			}
 		}
 		return null;
 	}
 
-	private <T> T DecodeMsg(Class<T> clazz, ByteBuf content)
+	private Object DecodeMsg(Class<?> clazz, ByteBuf content)
 	{
-		T msg = null;
+		Object msg = null;
 		try
 		{
 			msg = DecodeObject(clazz, content);
@@ -112,41 +81,40 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		return msg;
 	}
 
-	private <T> T DecodeObject(Class<T> clazz, ByteBuf content) throws Exception
+	private Object DecodeObject(Class<?> clazz, ByteBuf content) throws Exception
 	{
-		T obj = clazz.newInstance();
+		Object obj = clazz.newInstance();
 		Field[] fs = clazz.getFields();        // 获取所有 PUBLIC 变量，包含自己定义的和继承的
 		for (Field f : fs)
 			DecodeField(obj, f, content);
 		return obj;
 	}
 
-	@SuppressWarnings("unchecked")
-	private <T> T DecodePrimitive(Class<T> clazz, ByteBuf content) throws Exception
+	private Object DecodePrimitive(Class<?> clazz, ByteBuf content) throws Exception
 	{
 		if (clazz == boolean.class)
-			return (T) Boolean.valueOf(content.readBoolean());
+			return content.readBoolean();
 		else if (clazz == byte.class)
-			return (T) Byte.valueOf(content.readByte());
+			return content.readByte();
 		else if (clazz == char.class)
-			return (T) Character.valueOf(content.readChar());
+			return content.readChar();
 		else if (clazz == short.class)
-			return (T) Short.valueOf(content.readShort());
+			return content.readShort();
 		else if (clazz == int.class)
-			return (T) Integer.valueOf(content.readInt());
+			return content.readInt();
 		else if (clazz == long.class)
-			return (T) Long.valueOf(content.readLong());
+			return content.readLong();
 		else if (clazz == float.class)
-			return (T) Float.valueOf(content.readFloat());
+			return content.readFloat();
 		else if (clazz == double.class)
-			return (T) Double.valueOf(content.readDouble());
+			return content.readDouble();
 		else if (clazz == void.class)
 			return null;
 		else
 			return null;
 	}
 
-	private <T> void DecodeField(T obj, Field field, ByteBuf content) throws Exception
+	private void DecodeField(Object obj, Field field, ByteBuf content) throws Exception
 	{
 		try
 		{
@@ -160,17 +128,17 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 			else
 				DecodeCustomField(obj, field, content);
 		}
-		catch (MessageDeserializeException | UnsupportMessageFieldException ex)
+		catch (MessageDecodeException | UnsupportMessageFieldException ex)
 		{
 			throw ex;
 		}
 		catch (Exception ex)
 		{
-			throw new MessageDeserializeException(obj, field.getName(), ex);
+			throw new MessageDecodeException(obj, field.getName(), ex);
 		}
 	}
 
-	private <T> void DecodePrimitiveField(T obj, Field field, ByteBuf content) throws Exception
+	private void DecodePrimitiveField(Object obj, Field field, ByteBuf content) throws Exception
 	{
 		Class<?> fieldClazz = field.getType();
 		if (fieldClazz == boolean.class)
@@ -202,7 +170,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 			throw new UnsupportMessageFieldException(obj, field.getName());
 	}
 
-	private <T> void DecodeArrayField(T obj, Field field, ByteBuf content) throws Exception
+	private void DecodeArrayField(Object obj, Field field, ByteBuf content) throws Exception
 	{
 		Class<?> elemClazz = field.getType().getComponentType();
 		short len = content.readShort();
@@ -213,7 +181,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 			{
 				Object elem = DecodePrimitive(elemClazz, content);
 				if (elem == null)
-					throw new MessageDeserializeException(obj, field.getName());
+					throw new MessageDecodeException(obj, field.getName());
 				Array.set(newArray, i, elem);
 			}
 		}
@@ -223,18 +191,18 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 			{
 				Object elem = DecodeObject(elemClazz, content);
 				if (elem == null)
-					throw new MessageDeserializeException(obj, field.getName());
+					throw new MessageDecodeException(obj, field.getName());
 				Array.set(newArray, i, elem);
 			}
 		}
 		field.set(obj, newArray);
 	}
 
-	private <T> void DecodeCustomField(T obj, Field field, ByteBuf content) throws Exception
+	private void DecodeCustomField(Object obj, Field field, ByteBuf content) throws Exception
 	{
 		Object fieldObj = DecodeObject(field.getType(), content);
 		if (fieldObj == null)
-			throw new MessageDeserializeException(obj, field.getName());
+			throw new MessageDecodeException(obj, field.getName());
 		field.set(obj, fieldObj);
 	}
 }
