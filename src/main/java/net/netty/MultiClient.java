@@ -25,7 +25,7 @@ public class MultiClient
 		InBoundMessageMap.getInstance();
 		OutBoundMessageMap.getInstance();
 
-		int clientNumber = 100;
+		int clientNumber = 50;
 
 		MultiClient host = new MultiClient();
 		Bootstrap bootstrap = host.PrepareBootstrap(clientNumber);
