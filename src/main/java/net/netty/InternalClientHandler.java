@@ -3,11 +3,10 @@ package net.netty;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import javafx.util.Pair;
-import net.netty.messages.*;
+import net.netty.messages.inbound.*;
 
 import java.nio.charset.Charset;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -20,16 +19,6 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	public static ConcurrentLinkedQueue<Pair<String, Integer>> userQueue = new ConcurrentLinkedQueue<>();
 
 	private static final boolean REGISTER = false;
-
-//	private String username;
-//	private String password = "111111";
-//	private int templateID;
-//
-//	public InternalClientHandler(int index, String username, int templateID)
-//	{
-//		this.username = username;
-//		this.templateID = templateID;
-//	}
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception
@@ -300,7 +289,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		buffer.writerIndex(len);
 	}
 
-	void PackRequestDetailMsg(ByteBuf buffer)
+	private void PackRequestDetailMsg(ByteBuf buffer)
 	{
 		buffer.writeByte(0);
 		buffer.writeByte(0);

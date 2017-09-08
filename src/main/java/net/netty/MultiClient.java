@@ -9,6 +9,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.util.concurrent.*;
 import javafx.util.Pair;
+import net.netty.messages.InBoundMessageMap;
+import net.netty.messages.OutBoundMessageMap;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +22,9 @@ public class MultiClient
 {
 	public static void main(String[] args)
 	{
+		InBoundMessageMap.getInstance();
+		OutBoundMessageMap.getInstance();
+
 		int clientNumber = 100;
 
 		MultiClient host = new MultiClient();
@@ -87,6 +92,7 @@ public class MultiClient
 				@Override
 				public void initChannel(SocketChannel ch) throws Exception
 				{
+//					ch.pipeline().addLast(new InternalClientEncoder());
 					ch.pipeline().addLast(new InternalClientDecoder());
 					ch.pipeline().addLast(new InternalClientHandler());
 				}
