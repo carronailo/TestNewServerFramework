@@ -15,51 +15,7 @@ public abstract class MessageMap
 {
 	String packageName = "";
 
-	private volatile boolean initialized = false;
-
-	private Map<Integer, Map<Integer, Class>> messageMap = null;
-
-	public void initMessageMap()
-	{
-		if(initialized)
-			return;
-
-		try
-		{
-			messageMap = new HashMap<>();
-
-			if(!packageName.isEmpty())
-			{
-				List<String> inboundMessageNames = doScan(packageName, new ArrayList<>());
-				for(String inboundMessage : inboundMessageNames)
-				{
-					Class<?> c = Class.forName(inboundMessage);
-					RPC rpcAnnotation = c.getAnnotation(RPC.class);
-					if(rpcAnnotation != null && rpcAnnotation.CID() >= 0 && rpcAnnotation.MID() >= 0)
-					{
-						Map<Integer, Class> tmp = messageMap.computeIfAbsent(rpcAnnotation.CID(), m -> new HashMap<>());
-						tmp.put(rpcAnnotation.MID(), c);
-					}
-				}
-			}
-
-			initialized = true;
-		}
-		catch (Exception ex)
-		{
-			ex.printStackTrace();
-		}
-	}
-
-	public Class getMessageClassByID(int cid, int mid)
-	{
-		if (!initialized)
-			initMessageMap();
-		Map<Integer, Class> tmp = messageMap.get(cid);
-		if (tmp != null)
-			return tmp.get(mid);
-		return null;
-	}
+	volatile boolean initialized = false;
 
 	/**
 	 * Actually perform the scanning procedure.
@@ -69,7 +25,7 @@ public abstract class MessageMap
 	 * @return A list of fully qualified names.
 	 * @throws IOException
 	 */
-	private List<String> doScan(String basePackage, List<String> nameList) throws IOException
+	List<String> doScan(String basePackage, List<String> nameList) throws IOException
 	{
 		// replace dots with splashes
 		String splashPath = dotToSplash(basePackage);
