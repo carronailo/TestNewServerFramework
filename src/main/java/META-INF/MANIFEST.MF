@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Class-Path: libs/stax-api-1.0.1.jar libs/commons-logging-1.1.1.jar lib
+ s/zero-allocation-hashing-0.8.jar libs/commons-codec-1.10.jar libs/co
+ mmons-pool2-2.4.2.jar libs/cache-api-1.0.0.jar libs/mysql-connector-j
+ ava-6.0.6.jar libs/java-util-1.9.0.jar libs/reactor-stream-2.0.8.RELE
+ ASE.jar libs/snakeyaml-1.15.jar libs/byte-buddy-1.6.8.jar libs/xmlbea
+ ns-2.6.0.jar libs/jackson-core-2.7.6.jar libs/jackson-databind-2.7.6.
+ jar libs/netty-all-4.1.11.Final.jar libs/jedis-2.9.0.jar libs/reactiv
+ e-streams-1.0.0.jar libs/jodd-bean-3.7.1.jar libs/httpclient-4.4.1.ja
+ r libs/commons-collections4-4.1.jar libs/javassist-3.21.0-GA.jar libs
+ /curvesapi-1.04.jar libs/poi-ooxml-3.16.jar libs/poi-3.16.jar libs/fs
+ t-2.50.jar libs/poi-ooxml-schemas-3.16.jar libs/httpcore-4.4.1.jar li
+ bs/jackson-annotations-2.7.0.jar libs/objenesis-2.5.1.jar libs/slf4j-
+ api-1.7.21.jar libs/reactor-core-2.0.8.RELEASE.jar libs/redisson-3.4.
+ 3.jar libs/json-io-2.5.1.jar libs/jackson-dataformat-yaml-2.7.6.jar l
+ ibs/jodd-core-3.7.1.jar libs/libthrift-0.10.0.jar
+Main-Class: data.excel.TestPOI
+

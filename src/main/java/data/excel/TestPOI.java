@@ -21,6 +21,7 @@ public class TestPOI
 {
 	public static void ProcessHSSFWorkbookContent(HSSFWorkbook wb)
 	{
+		System.out.println("处理xls文档");
 		int sheetsCount = wb.getNumberOfSheets();
 		for(int i = 0 ; i < sheetsCount; ++i)
 		{
@@ -32,24 +33,24 @@ public class TestPOI
 			{
 				for(Cell c : firstRow)
 				{
-					HSSFCell cell = (HSSFCell)c;
+//					HSSFCell cell = (HSSFCell)c;
 					String cellContent = null;
-					switch (cell.getCellTypeEnum())
+					switch (c.getCellTypeEnum())
 					{
 						case BOOLEAN:
-							cellContent = String.format("b:%1$b", cell.getBooleanCellValue());
+							cellContent = String.format("b:%1$b", c.getBooleanCellValue());
 							break;
 						case STRING:
-							cellContent = String.format("s:%1$s", cell.getStringCellValue());
+							cellContent = String.format("s:%1$s", c.getStringCellValue());
 							break;
 						case FORMULA:
-							cellContent = String.format("f:%1$s", cell.getCellFormula());
+							cellContent = String.format("f:%1$s", c.getCellFormula());
 							break;
 						case ERROR:
-							cellContent = String.format("e:%1$s", FormulaError.forInt(cell.getErrorCellValue()));
+							cellContent = String.format("e:%1$s", FormulaError.forInt(c.getErrorCellValue()));
 							break;
 						case NUMERIC:
-							cellContent = String.format("n:%1$f", cell.getNumericCellValue());
+							cellContent = String.format("n:%1$f", c.getNumericCellValue());
 							break;
 						default:
 							break;
@@ -63,6 +64,7 @@ public class TestPOI
 
 	public static void ProcessXSSFWorkbookContent(XSSFWorkbook wb)
 	{
+		System.out.println("处理xlsx文档");
 		int sheetsCount = wb.getNumberOfSheets();
 		for(int i = 0 ; i < sheetsCount; ++i)
 		{
@@ -74,24 +76,24 @@ public class TestPOI
 			{
 				for(Cell c : firstRow)
 				{
-					XSSFCell cell = (XSSFCell)c;
+//					XSSFCell cell = (XSSFCell)c;
 					String cellContent = null;
-					switch (cell.getCellTypeEnum())
+					switch (c.getCellTypeEnum())
 					{
 						case BOOLEAN:
-							cellContent = String.format("b:%1$b", cell.getBooleanCellValue());
+							cellContent = String.format("b:%1$b", c.getBooleanCellValue());
 							break;
 						case STRING:
-							cellContent = String.format("s:%1$s", cell.getStringCellValue());
+							cellContent = String.format("s:%1$s", c.getStringCellValue());
 							break;
 						case FORMULA:
-							cellContent = String.format("f:%1$s", cell.getCellFormula());
+							cellContent = String.format("f:%1$s", c.getCellFormula());
 							break;
 						case ERROR:
-							cellContent = String.format("e:%1$s", FormulaError.forInt(cell.getErrorCellValue()));
+							cellContent = String.format("e:%1$s", FormulaError.forInt(c.getErrorCellValue()));
 							break;
 						case NUMERIC:
-							cellContent = String.format("n:%1$f", cell.getNumericCellValue());
+							cellContent = String.format("n:%1$f", c.getNumericCellValue());
 							break;
 						default:
 							break;
@@ -106,7 +108,8 @@ public class TestPOI
 
 	public static void main(String[] args)
 	{
-		File excelFile = new File("src/main/resources/怪物属性表.xlsx");
+//		File excelFile = new File("resources/怪物属性表.xlsx");
+		File excelFile = new File("resources/用户角色表.xls");
 		System.out.println(excelFile.getAbsolutePath());
 		System.out.println(excelFile.exists());
 
