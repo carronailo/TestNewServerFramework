@@ -1,4 +1,4 @@
-package data.excel.configs;
+package data.config;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

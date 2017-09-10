@@ -14,5 +14,5 @@ Class-Path: libs/stax-api-1.0.1.jar libs/commons-logging-1.1.1.jar lib
  api-1.7.21.jar libs/reactor-core-2.0.8.RELEASE.jar libs/redisson-3.4.
  3.jar libs/json-io-2.5.1.jar libs/jackson-dataformat-yaml-2.7.6.jar l
  ibs/jodd-core-3.7.1.jar libs/libthrift-0.10.0.jar
-Main-Class: data.excel.TestPOI
+Main-Class: data.config.excel.TestPOI
 

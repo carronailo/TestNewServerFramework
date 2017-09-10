@@ -1,5 +1,7 @@
 package net.netty.messages;
 
+import common.utility.PackageScanner;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Map;
 /**
  * Created by CarroNailo on 2017/9/8 16:38 for TestNewServerFramework.
  */
-public class InBoundMessageMap extends MessageMap
+public class InBoundMessageMap
 {
 	private static InBoundMessageMap instance = null;
 
@@ -30,12 +32,16 @@ public class InBoundMessageMap extends MessageMap
 
 	private Map<Integer, Map<Integer, Class>> messageMap = null;
 
+	private String packageName = "";
+
+	private volatile boolean initialized = false;
+
 	private InBoundMessageMap()
 	{
 		packageName = InBoundMessageMap.class.getPackage().getName().concat(".inbound");
 	}
 
-	public void initMessageMap()
+	private void initMessageMap()
 	{
 		if(initialized)
 			return;
@@ -46,7 +52,7 @@ public class InBoundMessageMap extends MessageMap
 
 			if(!packageName.isEmpty())
 			{
-				List<String> inboundMessageNames = doScan(packageName, new ArrayList<>());
+				List<String> inboundMessageNames = PackageScanner.doScan(packageName, this.getClass().getClassLoader(), new ArrayList<>());
 				for(String inboundMessage : inboundMessageNames)
 				{
 					Class<?> c = Class.forName(inboundMessage);

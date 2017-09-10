@@ -1,4 +1,4 @@
-package data.excel.configs;
+package data.config;
 
 public class TYPE
 {

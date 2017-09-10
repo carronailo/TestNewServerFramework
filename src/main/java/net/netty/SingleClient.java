@@ -5,6 +5,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import javafx.util.Pair;
+import net.netty.messages.InBoundMessageMap;
+import net.netty.messages.OutBoundMessageMap;
 
 import java.util.Random;
 
@@ -13,6 +16,40 @@ import java.util.Random;
  */
 public class SingleClient
 {
+	public static void main(String[] args)
+	{
+		InBoundMessageMap.getInstance();
+		OutBoundMessageMap.getInstance();
+
+		EventLoopGroup workerGroup = new NioEventLoopGroup(1);
+		InternalClientHandler.userQueue.add(new Pair<>("nmmo0000", 1002));
+		try
+		{
+			Bootstrap b = new Bootstrap(); // (1)
+			b.group(workerGroup); // (2)
+			b.channel(ExtendedNioSocketChannel.class); // (3)
+			b.option(ChannelOption.SO_KEEPALIVE, true); // (4)
+			b.handler(new ChannelInitializer<SocketChannel>()
+			{
+				@Override
+				public void initChannel(SocketChannel ch) throws Exception
+				{
+					ch.pipeline().addLast(new InternalClientEncoder());
+					ch.pipeline().addLast(new InternalClientDecoder());
+					ch.pipeline().addLast(new InternalClientHandler());
+				}
+			});
+			SingleClient client = new SingleClient(6868, 0, b);
+			System.out.println("Start client: " + 0);
+			client.Start().sync();
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			workerGroup.shutdownGracefully();
+		}
+	}
+
 	private Bootstrap bootstrap;
 	private int port = 8080;
 	private int clientIndex = 0;

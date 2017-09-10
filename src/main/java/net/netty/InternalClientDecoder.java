@@ -108,6 +108,13 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 			return content.readFloat();
 		else if (clazz == double.class)
 			return content.readDouble();
+		else if(clazz == String.class)
+		{
+			short len = content.readShort();
+			byte[] bytes = new byte[len];
+			content.readBytes(bytes);
+			return new String(bytes, "UTF8");
+		}
 		else if (clazz == void.class)
 			return null;
 		else
@@ -175,7 +182,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		Class<?> elemClazz = field.getType().getComponentType();
 		short len = content.readShort();
 		Object newArray = Array.newInstance(elemClazz, len);
-		if(elemClazz.isPrimitive())
+		if(elemClazz.isPrimitive() || elemClazz == String.class)
 		{
 			for (int i = 0; i < len; ++i)
 			{

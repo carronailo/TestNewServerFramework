@@ -29,35 +29,30 @@ public class MultiClient
 
 		MultiClient host = new MultiClient();
 		Bootstrap bootstrap = host.PrepareBootstrap(clientNumber);
-		if(bootstrap == null)
+		if (bootstrap == null)
 			return;
 
 		Future<?>[] fs = new Future<?>[clientNumber];
 		for (int i = 0; i < fs.length; ++i)
 		{
-			final int index = i;
 			try
 			{
 				Thread.sleep(100);
 			}
-			catch(Exception ex)
+			catch (Exception ignored)
 			{
-
 			}
-			fs[index] = host.StartClient(index, bootstrap);
+			fs[i] = host.StartClient(i, bootstrap);
 		}
-		for (; ; )
+		for (Future<?> f : fs)
 		{
-			for (Future<?> f : fs)
+			try
 			{
-				try
-				{
-					f.sync();
-				}
-				catch(Exception ex)
-				{
-					ex.printStackTrace();
-				}
+				f.sync();
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
 			}
 		}
 	}
@@ -65,17 +60,17 @@ public class MultiClient
 	private int[] templateIDPool = new int[]{1002, 1003, 1004};
 	private Random rand = new Random();
 
-	ChannelFuture StartClient(int index, Bootstrap bootstrap)
+	private ChannelFuture StartClient(int index, Bootstrap bootstrap)
 	{
 		SingleClient client = new SingleClient(6868, index, bootstrap);
 		System.out.println("Start client: " + index);
 		return client.Start();
 	}
 
-	Bootstrap PrepareBootstrap(int clientNumber)
+	private Bootstrap PrepareBootstrap(int clientNumber)
 	{
 		EventLoopGroup workerGroup = new NioEventLoopGroup(8);
-		for(int i = 0 ; i < clientNumber; ++i)
+		for (int i = 0; i < clientNumber; ++i)
 		{
 			Pair<String, Integer> p =
 				new Pair<>(String.format("nmmo%04d", i), templateIDPool[rand.nextInt(templateIDPool.length)]);

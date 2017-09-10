@@ -1,4 +1,4 @@
-package net.netty;
+package net.netty.test;
 
 import org.junit.Test;
 

@@ -1,5 +1,6 @@
 package net.netty.messages;
 
+import common.utility.PackageScanner;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * Created by CarroNailo on 2017/9/8 17:02 for TestNewServerFramework.
  */
-public class OutBoundMessageMap extends MessageMap
+public class OutBoundMessageMap
 {
 	private static OutBoundMessageMap instance = null;
 
@@ -32,12 +33,16 @@ public class OutBoundMessageMap extends MessageMap
 
 	private Map<Class, Pair<Integer, Integer>> messageMap = null;
 
-	public OutBoundMessageMap()
+	private String packageName = "";
+
+	private volatile boolean initialized = false;
+
+	private OutBoundMessageMap()
 	{
 		packageName = InBoundMessageMap.class.getPackage().getName().concat(".outbound");
 	}
 
-	public void initMessageMap()
+	private void initMessageMap()
 	{
 		if(initialized)
 			return;
@@ -48,10 +53,10 @@ public class OutBoundMessageMap extends MessageMap
 
 			if(!packageName.isEmpty())
 			{
-				List<String> inboundMessageNames = doScan(packageName, new ArrayList<>());
-				for(String inboundMessage : inboundMessageNames)
+				List<String> outboundMessageNames = PackageScanner.doScan(packageName, this.getClass().getClassLoader(), new ArrayList<>());
+				for(String outboundMessage : outboundMessageNames)
 				{
-					Class<?> c = Class.forName(inboundMessage);
+					Class<?> c = Class.forName(outboundMessage);
 					RPC rpcAnnotation = c.getAnnotation(RPC.class);
 					if(rpcAnnotation != null && rpcAnnotation.CID() >= 0 && rpcAnnotation.MID() >= 0)
 					{
