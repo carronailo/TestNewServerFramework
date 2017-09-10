@@ -7,21 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ad7eb48-f467-4c64-b18b-ae7b39b11403" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/.gitkeep" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/excel/TestPOI.java" afterPath="$PROJECT_DIR$/src/main/java/data/config/excel/TestPOI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/excel/configs/CONF.java" afterPath="$PROJECT_DIR$/src/main/java/data/config/CONF.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/excel/configs/TYPE.java" afterPath="$PROJECT_DIR$/src/main/java/data/config/TYPE.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/excel/configs/excel/UserRoleTable.java" afterPath="$PROJECT_DIR$/src/main/java/data/config/excel/tables/UserRoleTable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/net/netty/messages/MessageMap.java" afterPath="$PROJECT_DIR$/src/main/java/common/utility/PackageScanner.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/net/netty/EchoServerHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/netty/test/EchoServerHandlerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/用户角色表.xls" afterPath="$PROJECT_DIR$/resources/用户角色表.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/messages/InBoundMessageMap.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/messages/InBoundMessageMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/messages/OutBoundMessageMap.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/messages/OutBoundMessageMap.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -905,7 +891,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504888068197</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="配置文件读取">
+      <created>1505062363029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1505062363029</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -929,7 +922,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39934713" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934713" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -946,7 +939,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="跟游戏服务器的网络消息处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="跟游戏服务器的网络消息处理" />
+    <MESSAGE value="配置文件读取" />
+    <option name="LAST_COMMIT_MESSAGE" value="配置文件读取" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1070,6 +1064,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
