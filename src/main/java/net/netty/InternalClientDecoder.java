@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+import javassist.compiler.NoFieldException;
 import net.netty.exceptions.MessageDecodeException;
 import net.netty.exceptions.UnsupportMessageFieldException;
 import net.netty.messages.InBoundMessageMap;
@@ -92,21 +93,21 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 
 	private Object DecodePrimitive(Class<?> clazz, ByteBuf content) throws Exception
 	{
-		if (clazz == boolean.class)
+		if (clazz == boolean.class || clazz == Boolean.class)
 			return content.readBoolean();
-		else if (clazz == byte.class)
+		else if (clazz == byte.class || clazz == Byte.class)
 			return content.readByte();
-		else if (clazz == char.class)
+		else if (clazz == char.class || clazz == Character.class)
 			return content.readChar();
-		else if (clazz == short.class)
+		else if (clazz == short.class || clazz == Short.class)
 			return content.readShort();
-		else if (clazz == int.class)
+		else if (clazz == int.class || clazz == Integer.class)
 			return content.readInt();
-		else if (clazz == long.class)
+		else if (clazz == long.class || clazz == Long.class)
 			return content.readLong();
-		else if (clazz == float.class)
+		else if (clazz == float.class || clazz == Float.class)
 			return content.readFloat();
-		else if (clazz == double.class)
+		else if (clazz == double.class || clazz == Double.class)
 			return content.readDouble();
 		else if(clazz == String.class)
 		{
@@ -126,7 +127,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		try
 		{
 			Class<?> fieldClazz = field.getType();
-			if (fieldClazz.isPrimitive() || fieldClazz == String.class)
+			if (fieldClazz.isPrimitive() || isPrimitiveWrapClass(fieldClazz) || fieldClazz == String.class)
 				DecodePrimitiveField(obj, field, content);
 			else if (fieldClazz.isArray())
 				DecodeArrayField(obj, field, content);
@@ -148,21 +149,21 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 	private void DecodePrimitiveField(Object obj, Field field, ByteBuf content) throws Exception
 	{
 		Class<?> fieldClazz = field.getType();
-		if (fieldClazz == boolean.class)
+		if (fieldClazz == boolean.class || fieldClazz == Boolean.class)
 			field.setBoolean(obj, content.readBoolean());
-		else if (fieldClazz == byte.class)
+		else if (fieldClazz == byte.class || fieldClazz == Byte.class)
 			field.setByte(obj, content.readByte());
-		else if (fieldClazz == char.class)
+		else if (fieldClazz == char.class || fieldClazz == Character.class)
 			field.setChar(obj, content.readChar());
-		else if (fieldClazz == short.class)
+		else if (fieldClazz == short.class || fieldClazz == Short.class)
 			field.setShort(obj, content.readShort());
-		else if (fieldClazz == int.class)
+		else if (fieldClazz == int.class || fieldClazz == Integer.class)
 			field.setInt(obj, content.readInt());
-		else if (fieldClazz == long.class)
+		else if (fieldClazz == long.class || fieldClazz == Long.class)
 			field.setLong(obj, content.readLong());
-		else if (fieldClazz == float.class)
+		else if (fieldClazz == float.class || fieldClazz == Float.class)
 			field.setFloat(obj, content.readFloat());
-		else if (fieldClazz == double.class)
+		else if (fieldClazz == double.class || fieldClazz == Double.class)
 			field.setDouble(obj, content.readDouble());
 		else if (fieldClazz == void.class)
 			throw new UnsupportMessageFieldException(obj, field.getName());
@@ -182,7 +183,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		Class<?> elemClazz = field.getType().getComponentType();
 		short len = content.readShort();
 		Object newArray = Array.newInstance(elemClazz, len);
-		if(elemClazz.isPrimitive() || elemClazz == String.class)
+		if(elemClazz.isPrimitive() || isPrimitiveWrapClass(elemClazz) || elemClazz == String.class)
 		{
 			for (int i = 0; i < len; ++i)
 			{
@@ -211,5 +212,28 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		if (fieldObj == null)
 			throw new MessageDecodeException(obj, field.getName());
 		field.set(obj, fieldObj);
+	}
+
+	private boolean isPrimitiveWrapClass(Class<?> clazz) throws Exception
+	{
+		Field f = null;
+		try
+		{
+			f = clazz.getField("TYPE");
+
+		}
+		catch(NoSuchFieldException ignored)
+		{
+		}
+		if(f != null)
+		{
+			Class<?> c = (Class)f.get(null);
+			if(c != null)
+			{
+				return c.isPrimitive();
+			}
+			return false;
+		}
+		return false;
 	}
 }

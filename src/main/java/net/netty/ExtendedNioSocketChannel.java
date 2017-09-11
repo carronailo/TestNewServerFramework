@@ -11,4 +11,5 @@ public class ExtendedNioSocketChannel extends NioSocketChannel
 {
 	public String username;
 	public int templateID;
+	public int serverID;
 }

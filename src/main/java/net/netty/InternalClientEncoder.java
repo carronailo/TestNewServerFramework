@@ -66,49 +66,49 @@ public class InternalClientEncoder extends MessageToByteEncoder
 	{
 		int len = 0;
 		Class<?> clazz = value.getClass();
-		if (clazz == boolean.class)
+		if (clazz == boolean.class || clazz == Boolean.class)
 		{
 			len = 1;
 			out.ensureWritable(len);
 			out.writeBoolean((boolean)value);
 		}
-		else if (clazz == byte.class)
+		else if (clazz == byte.class || clazz == Byte.class)
 		{
 			len = 1;
 			out.ensureWritable(len);
 			out.writeByte((Byte)value);
 		}
-		else if (clazz == char.class)
+		else if (clazz == char.class || clazz == Character.class)
 		{
 			len = 1;
 			out.ensureWritable(len);
 			out.writeChar((Character)value);
 		}
-		else if (clazz == short.class)
+		else if (clazz == short.class || clazz == Short.class)
 		{
 			len = 2;
 			out.ensureWritable(len);
 			out.writeShort((Short)value);
 		}
-		else if (clazz == int.class)
+		else if (clazz == int.class || clazz == Integer.class)
 		{
 			len = 4;
 			out.ensureWritable(len);
 			out.writeInt((Integer)value);
 		}
-		else if (clazz == long.class)
+		else if (clazz == long.class || clazz == Long.class)
 		{
 			len = 8;
 			out.ensureWritable(len);
 			out.writeLong((Long)value);
 		}
-		else if (clazz == float.class)
+		else if (clazz == float.class || clazz == Float.class)
 		{
 			len = 4;
 			out.ensureWritable(len);
 			out.writeFloat((Float)value);
 		}
-		else if (clazz == double.class)
+		else if (clazz == double.class || clazz == Double.class)
 		{
 			len = 8;
 			out.ensureWritable(len);

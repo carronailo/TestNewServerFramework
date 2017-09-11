@@ -13,9 +13,18 @@ public class MID
 		public static final int LOGIN_EnterWorld = 2;
 
 		// CITY
+		public static final int CITY_RequestPVEReturn = 0;
+		public static final int CITY_RequestPVPReturn = 1;
 		public static final int CITY_SomeoneEnterScene = 2;
 
+		// BATTLE
+		public static final int BATTLE_PVEReckoningInfo = 1;
+		public static final int BATTLE_PVPReckoningInfo = 4;
+
 		// Character
+
+		// Arena Solo
+		public static final int ARENA_SOLO_ArenaRankInfo = 0;
 
 		// ECHO
 		public static final int ECHO_Echo = 1;
@@ -31,8 +40,16 @@ public class MID
 		// CITY
 		public static final int CITY_EnterScene = 0;
 
+		// BATTLE
+		public static final int BATTLE_RequestReckoning = 2;
+		public static final int BATTLE_SubmitStartBattle = 14;
+
 		// Character
 		public static final int CHARACTER_RequestDetail = 10;
+
+		// Arena Solo
+		public static final int ARENA_SOLO_RequireUpdateArenaInfo = 0;
+		public static final int ARENA_SOLO_RequirePKPlayer = 6;
 
 		// ECHO
 		// Client side

@@ -39,7 +39,7 @@ public class SingleClient
 					ch.pipeline().addLast(new InternalClientHandler());
 				}
 			});
-			SingleClient client = new SingleClient(6868, 0, b);
+			SingleClient client = new SingleClient("127.0.0.1", 6868, 0, b);
 			System.out.println("Start client: " + 0);
 			client.Start().sync();
 		}
@@ -51,11 +51,13 @@ public class SingleClient
 	}
 
 	private Bootstrap bootstrap;
+	private String host = "127.0.0.1";
 	private int port = 8080;
 	private int clientIndex = 0;
 
-	public SingleClient(int port, int clientIndex, Bootstrap bootstrap)
+	public SingleClient(String host, int port, int clientIndex, Bootstrap bootstrap)
 	{
+		this.host = host;
 		this.port = port;
 		this.clientIndex = clientIndex;
 		this.bootstrap = bootstrap;
@@ -66,7 +68,7 @@ public class SingleClient
 		try
 		{
 			// Start the client.
-			ChannelFuture f = bootstrap.connect("127.0.0.1", port).sync();
+			ChannelFuture f = bootstrap.connect(host, port).sync();
 
 			// Wait until the connection is closed.
 //			f.channel().closeFuture().sync();

@@ -20,12 +20,25 @@ import java.util.concurrent.TimeUnit;
  */
 public class MultiClient
 {
+	public static volatile int loginSuccessCount = 0;
+	public static volatile int normalFinishCount = 0;
+	public static volatile int errorFinishCount = 0;
+
+	private static Random rand = new Random();
+
 	public static void main(String[] args)
 	{
 		InBoundMessageMap.getInstance();
 		OutBoundMessageMap.getInstance();
 
 		int clientNumber = 50;
+
+		for (int i = 0; i < clientNumber; ++i)
+		{
+			Pair<String, Integer> p =
+				new Pair<>(String.format("nmmo%04d", i), 1002 + rand.nextInt(3));
+			InternalClientHandler.userQueue.add(p);
+		}
 
 		MultiClient host = new MultiClient();
 		Bootstrap bootstrap = host.PrepareBootstrap(clientNumber);
@@ -42,7 +55,7 @@ public class MultiClient
 			catch (Exception ignored)
 			{
 			}
-			fs[i] = host.StartClient(i, bootstrap);
+			fs[i] = host.StartClient(i, "127.0.0.1", 6868, bootstrap);
 		}
 		for (Future<?> f : fs)
 		{
@@ -55,27 +68,19 @@ public class MultiClient
 				ex.printStackTrace();
 			}
 		}
+		bootstrap.config().group().shutdownGracefully();
 	}
 
-	private int[] templateIDPool = new int[]{1002, 1003, 1004};
-	private Random rand = new Random();
-
-	private ChannelFuture StartClient(int index, Bootstrap bootstrap)
+	public ChannelFuture StartClient(int index, String host, int port, Bootstrap bootstrap)
 	{
-		SingleClient client = new SingleClient(6868, index, bootstrap);
+		SingleClient client = new SingleClient(host, port, index, bootstrap);
 		System.out.println("Start client: " + index);
 		return client.Start();
 	}
 
-	private Bootstrap PrepareBootstrap(int clientNumber)
+	public Bootstrap PrepareBootstrap(int clientNumber)
 	{
 		EventLoopGroup workerGroup = new NioEventLoopGroup(8);
-		for (int i = 0; i < clientNumber; ++i)
-		{
-			Pair<String, Integer> p =
-				new Pair<>(String.format("nmmo%04d", i), templateIDPool[rand.nextInt(templateIDPool.length)]);
-			InternalClientHandler.userQueue.add(p);
-		}
 		try
 		{
 			Bootstrap b = new Bootstrap(); // (1)
