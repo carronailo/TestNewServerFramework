@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MultiClient
 {
+	public static volatile int loginTryCount = 0;
 	public static volatile int loginSuccessCount = 0;
 	public static volatile int loginFailCount = 0;
 	public static volatile int copyChallengeCount = 0;
@@ -30,6 +31,7 @@ public class MultiClient
 	public static volatile int arenaFailCount = 0;
 	public static volatile int normalFinishCount = 0;
 	public static volatile int errorFinishCount = 0;
+	public static volatile int unexpectedFinishCount = 0;
 
 	private static Random rand = new Random();
 

@@ -34,35 +34,31 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private int arenaChallengeTimes = 0;
 	private int copyChallengeTimes = 0;
 
+	private boolean closeByMe = false;
+
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception
 	{
-		Channel channel = ctx.channel();
-		if (channel instanceof ExtendedNioSocketChannel)
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		if (!userQueue.isEmpty())
 		{
-			if (!userQueue.isEmpty())
+			Pair<String, Integer> p = userQueue.poll();
+			if (p != null)
 			{
-				Pair<String, Integer> p = userQueue.poll();
-				if (p != null)
-				{
-					((ExtendedNioSocketChannel) channel).username = p.first;
-					((ExtendedNioSocketChannel) channel).templateID = p.second;
-					((ExtendedNioSocketChannel) channel).serverID = SERVERID;
-				}
-				else
-				{
-					ctx.close();
-					MultiClient.errorFinishCount++;
-				}
+				((ExtendedNioSocketChannel) ctx.channel()).username = p.first;
+				((ExtendedNioSocketChannel) ctx.channel()).templateID = p.second;
+				((ExtendedNioSocketChannel) ctx.channel()).serverID = SERVERID;
 			}
 			else
 			{
+				closeByMe = true;
 				ctx.close();
 				MultiClient.errorFinishCount++;
 			}
 		}
 		else
 		{
+			closeByMe = true;
 			ctx.close();
 			MultiClient.errorFinishCount++;
 		}
@@ -72,13 +68,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception
 	{
-		Channel channel = ctx.channel();
-		if (channel instanceof ExtendedNioSocketChannel)
-		{
-			Pair<String, Integer> p = Pair.makePair(((ExtendedNioSocketChannel) channel).username, ((ExtendedNioSocketChannel) channel).templateID);
-			userQueue.add(p);
-			System.out.println(String.format("[%s]断开连接", ((ExtendedNioSocketChannel) channel).username));
-		}
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		Pair<String, Integer> p = Pair.makePair(((ExtendedNioSocketChannel) ctx.channel()).username, ((ExtendedNioSocketChannel) ctx.channel()).templateID);
+		userQueue.add(p);
+		System.out.println(String.format("[%s]断开连接", ((ExtendedNioSocketChannel) ctx.channel()).username));
+		if(!closeByMe)
+			MultiClient.unexpectedFinishCount++;
 	}
 
 
@@ -97,6 +92,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 	{
 		cause.printStackTrace();
+		closeByMe = true;
 		ctx.close();
 		MultiClient.errorFinishCount++;
 	}
@@ -186,6 +182,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				newMsg.deviceIdentifier = "";
 				newMsg.deviceModel = "";
 				ctx.writeAndFlush(newMsg);
+				MultiClient.loginTryCount++;
 			}
 		}
 	}
@@ -203,6 +200,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else if (msg.returnValue == -4)
 		{
 			System.out.println(String.format("[%s]账号不存在", username));
+			closeByMe = true;
 			ctx.close();
 			MultiClient.loginFailCount++;
 			MultiClient.errorFinishCount++;
@@ -210,6 +208,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else if (msg.returnValue == -6)
 		{
 			System.out.println(String.format("[%s]账号已被注册", username));
+			closeByMe = true;
 			ctx.close();
 			MultiClient.loginFailCount++;
 			MultiClient.errorFinishCount++;
@@ -217,6 +216,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else
 		{
 			System.out.println(String.format("[%s]登录失败：[%d]", username, msg.returnValue));
+			closeByMe = true;
 			ctx.close();
 			MultiClient.loginFailCount++;
 			MultiClient.errorFinishCount++;
@@ -268,6 +268,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		{
 			// 啥都不测了，直接断开
 			ctx.flush();
+			closeByMe = true;
 			ctx.close();
 			MultiClient.normalFinishCount++;
 			return;
@@ -386,6 +387,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			else if (STOP_ON_FINISH)
 			{
 				// 啥都不测了，直接断开
+				closeByMe = true;
 				ctx.close();
 				MultiClient.normalFinishCount++;
 				return;
@@ -422,6 +424,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			if (STOP_ON_FINISH)
 			{
 				// 啥都不测了，直接断开
+				closeByMe = true;
 				ctx.close();
 				MultiClient.normalFinishCount++;
 				return;

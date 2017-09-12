@@ -92,12 +92,12 @@ public class RobotTest
 		{
 			try
 			{
-				System.err.println(String.format("%s: 登录[s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d]",
+				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 					timeOnlyFormatter.format(new Date()),
-					MultiClient.loginSuccessCount, MultiClient.loginFailCount,
+					MultiClient.loginTryCount, MultiClient.loginSuccessCount, MultiClient.loginFailCount,
 					MultiClient.copyChallengeCount, MultiClient.copySuccessCount, MultiClient.copyFailCount,
 					MultiClient.arenaChallengeCount, MultiClient.arenaSuccessCount, MultiClient.arenaFailCount,
-					MultiClient.normalFinishCount, MultiClient.errorFinishCount));
+					MultiClient.normalFinishCount, MultiClient.errorFinishCount, MultiClient.unexpectedFinishCount));
 				Thread.sleep(1000);
 			}
 			catch(Exception ignored)
