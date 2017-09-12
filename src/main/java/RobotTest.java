@@ -92,11 +92,11 @@ public class RobotTest
 		{
 			try
 			{
-				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
+				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 					timeOnlyFormatter.format(new Date()),
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
-					MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-					MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
@@ -120,11 +120,11 @@ public class RobotTest
 			}
 			try
 			{
-				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
+				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 					timeOnlyFormatter.format(new Date()),
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
-					MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-					MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
@@ -132,11 +132,11 @@ public class RobotTest
 			{
 			}
 		}
-		System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
+		System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 			timeOnlyFormatter.format(new Date()),
 			MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
-			MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-			MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+			MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+			MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
 			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 		bootstrap.config().group().shutdownGracefully();
 	}
