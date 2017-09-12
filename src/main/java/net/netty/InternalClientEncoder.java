@@ -1,9 +1,9 @@
 package net.netty;
 
+import common.utility.Pair;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import javafx.util.Pair;
 import net.netty.exceptions.MessageDecodeException;
 import net.netty.exceptions.MessageEncodeException;
 import net.netty.exceptions.UnsupportMessageFieldException;
@@ -27,8 +27,8 @@ public class InternalClientEncoder extends MessageToByteEncoder
 			out.ensureWritable(4);
 			out.writeByte(0);
 			out.writeByte(0);
-			out.writeByte(idPair.getKey());
-			out.writeByte(idPair.getValue());
+			out.writeByte(idPair.first);
+			out.writeByte(idPair.second);
 			int msgLen = EncodeMsg(msg, out);
 			int endIndex = out.writerIndex();
 			out.writerIndex(startIndex);

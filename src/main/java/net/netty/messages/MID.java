@@ -25,6 +25,7 @@ public class MID
 
 		// Arena Solo
 		public static final int ARENA_SOLO_ArenaRankInfo = 0;
+		public static final int ARENA_SOLO_ArenaRankList = 2;
 
 		// ECHO
 		public static final int ECHO_Echo = 1;
@@ -41,6 +42,7 @@ public class MID
 		public static final int CITY_EnterScene = 0;
 
 		// BATTLE
+		public static final int BATTLE_RequestPVE = 0;
 		public static final int BATTLE_RequestReckoning = 2;
 		public static final int BATTLE_SubmitStartBattle = 14;
 
@@ -50,6 +52,7 @@ public class MID
 		// Arena Solo
 		public static final int ARENA_SOLO_RequireUpdateArenaInfo = 0;
 		public static final int ARENA_SOLO_RequirePKPlayer = 6;
+		public static final int ARENA_SOLO_RequeireRankList = 11;
 
 		// ECHO
 		// Client side

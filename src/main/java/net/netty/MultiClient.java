@@ -1,5 +1,6 @@
 package net.netty;
 
+import common.utility.Pair;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -8,7 +9,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.util.concurrent.*;
-import javafx.util.Pair;
 import net.netty.messages.InBoundMessageMap;
 import net.netty.messages.OutBoundMessageMap;
 
@@ -21,6 +21,13 @@ import java.util.concurrent.TimeUnit;
 public class MultiClient
 {
 	public static volatile int loginSuccessCount = 0;
+	public static volatile int loginFailCount = 0;
+	public static volatile int copyChallengeCount = 0;
+	public static volatile int copySuccessCount = 0;
+	public static volatile int copyFailCount = 0;
+	public static volatile int arenaChallengeCount = 0;
+	public static volatile int arenaSuccessCount = 0;
+	public static volatile int arenaFailCount = 0;
 	public static volatile int normalFinishCount = 0;
 	public static volatile int errorFinishCount = 0;
 
@@ -35,8 +42,7 @@ public class MultiClient
 
 		for (int i = 0; i < clientNumber; ++i)
 		{
-			Pair<String, Integer> p =
-				new Pair<>(String.format("nmmo%04d", i), 1002 + rand.nextInt(3));
+			Pair<String, Integer> p = Pair.makePair(String.format("nmmo%04d", i), 1002 + rand.nextInt(3));
 			InternalClientHandler.userQueue.add(p);
 		}
 
@@ -80,7 +86,7 @@ public class MultiClient
 
 	public Bootstrap PrepareBootstrap(int clientNumber)
 	{
-		EventLoopGroup workerGroup = new NioEventLoopGroup(8);
+		EventLoopGroup workerGroup = new NioEventLoopGroup(32);
 		try
 		{
 			Bootstrap b = new Bootstrap(); // (1)

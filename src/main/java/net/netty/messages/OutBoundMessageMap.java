@@ -1,7 +1,7 @@
 package net.netty.messages;
 
 import common.utility.PackageScanner;
-import javafx.util.Pair;
+import common.utility.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class OutBoundMessageMap
 					RPC rpcAnnotation = c.getAnnotation(RPC.class);
 					if(rpcAnnotation != null && rpcAnnotation.CID() >= 0 && rpcAnnotation.MID() >= 0)
 					{
-						messageMap.put(c, new Pair<>(rpcAnnotation.CID(), rpcAnnotation.MID()));
+						messageMap.put(c, Pair.makePair(rpcAnnotation.CID(), rpcAnnotation.MID()));
 					}
 				}
 			}

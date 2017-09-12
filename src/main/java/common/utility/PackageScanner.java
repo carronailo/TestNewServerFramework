@@ -84,7 +84,7 @@ public abstract class PackageScanner
 		{
 			String name = entry.getName();
 			if (name.startsWith(splashedPackageName) && isClassFile(name))
-				nameList.add(name);
+				nameList.add(name.replaceAll(splashedPackageName, ""));
 			entry = jarIn.getNextJarEntry();
 		}
 
@@ -137,7 +137,10 @@ public abstract class PackageScanner
 	 */
 	private static String dotToSplash(String name)
 	{
-		return name.replaceAll("\\.", "/");
+		String res = name.replaceAll("\\.", "/");
+		if(!res.endsWith("/"))
+			return res.concat("/");
+		return res;
 	}
 
 	/**

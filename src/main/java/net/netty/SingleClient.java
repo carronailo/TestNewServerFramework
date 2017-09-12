@@ -1,15 +1,12 @@
 package net.netty;
 
+import common.utility.Pair;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import javafx.util.Pair;
 import net.netty.messages.InBoundMessageMap;
 import net.netty.messages.OutBoundMessageMap;
-
-import java.util.Random;
 
 /**
  * Created by CarroNailo on 2017/9/6 12:27 for TestNewServerFramework.
@@ -22,7 +19,7 @@ public class SingleClient
 		OutBoundMessageMap.getInstance();
 
 		EventLoopGroup workerGroup = new NioEventLoopGroup(1);
-		InternalClientHandler.userQueue.add(new Pair<>("nmmo0000", 1002));
+		InternalClientHandler.userQueue.add(Pair.makePair("nmmo0000", 1002));
 		try
 		{
 			Bootstrap b = new Bootstrap(); // (1)

@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact name="TestNewServerFramework:jar">
+  <artifact name="RobotTest">
     <output-path>$PROJECT_DIR$/output/</output-path>
     <root id="root">
       <element id="archive" name="TestNewServerFramework.jar">
@@ -45,9 +45,6 @@
         <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.15" />
         <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
         <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
-      </element>
-      <element id="directory" name="resources">
-        <element id="dir-copy" path="$PROJECT_DIR$/resources" />
       </element>
     </root>
   </artifact>
