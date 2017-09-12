@@ -53,14 +53,14 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			{
 				closeByMe = true;
 				ctx.close();
-				MultiClient.errorFinishCount++;
+				MultiClient.errorFinishCount.addAndGet(1);
 			}
 		}
 		else
 		{
 			closeByMe = true;
 			ctx.close();
-			MultiClient.errorFinishCount++;
+			MultiClient.errorFinishCount.addAndGet(1);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		userQueue.add(p);
 		System.out.println(String.format("[%s]断开连接", ((ExtendedNioSocketChannel) ctx.channel()).username));
 		if(!closeByMe)
-			MultiClient.unexpectedFinishCount++;
+			MultiClient.unexpectedFinishCount.addAndGet(1);
 	}
 
 
@@ -94,7 +94,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		cause.printStackTrace();
 		closeByMe = true;
 		ctx.close();
-		MultiClient.errorFinishCount++;
+		MultiClient.errorFinishCount.addAndGet(1);
 	}
 
 	private void HandleMessage(final ChannelHandlerContext ctx, Object msg) throws Exception
@@ -182,7 +182,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				newMsg.deviceIdentifier = "";
 				newMsg.deviceModel = "";
 				ctx.writeAndFlush(newMsg);
-				MultiClient.loginTryCount++;
+				MultiClient.loginTryCount.addAndGet(1);
 			}
 		}
 	}
@@ -195,31 +195,31 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		if (msg.returnValue == 1)
 		{
 			System.out.println(String.format("[%s]登录成功", username));
-			MultiClient.loginSuccessCount++;
+			MultiClient.loginSuccessCount.addAndGet(1);
 		}
 		else if (msg.returnValue == -4)
 		{
 			System.out.println(String.format("[%s]账号不存在", username));
 			closeByMe = true;
 			ctx.close();
-			MultiClient.loginFailCount++;
-			MultiClient.errorFinishCount++;
+			MultiClient.loginFailCount.addAndGet(1);
+			MultiClient.errorFinishCount.addAndGet(1);
 		}
 		else if (msg.returnValue == -6)
 		{
 			System.out.println(String.format("[%s]账号已被注册", username));
 			closeByMe = true;
 			ctx.close();
-			MultiClient.loginFailCount++;
-			MultiClient.errorFinishCount++;
+			MultiClient.loginFailCount.addAndGet(1);
+			MultiClient.errorFinishCount.addAndGet(1);
 		}
 		else
 		{
 			System.out.println(String.format("[%s]登录失败：[%d]", username, msg.returnValue));
 			closeByMe = true;
 			ctx.close();
-			MultiClient.loginFailCount++;
-			MultiClient.errorFinishCount++;
+			MultiClient.loginFailCount.addAndGet(1);
+			MultiClient.errorFinishCount.addAndGet(1);
 		}
 	}
 
@@ -270,7 +270,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			ctx.flush();
 			closeByMe = true;
 			ctx.close();
-			MultiClient.normalFinishCount++;
+			MultiClient.normalFinishCount.addAndGet(1);
 			return;
 		}
 		ctx.flush();
@@ -324,7 +324,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				ctx.write(newMsg);
 			}
 			ctx.flush();
-			MultiClient.copyChallengeCount++;
+			MultiClient.copyChallengeCount.addAndGet(1);
 		}
 		else
 		{
@@ -353,7 +353,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				ctx.write(newMsg);
 			}
 			ctx.flush();
-			MultiClient.arenaChallengeCount++;
+			MultiClient.arenaChallengeCount.addAndGet(1);
 		}
 		else
 		{
@@ -368,12 +368,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
 		if (msg.result == 1)
 		{
-			MultiClient.copySuccessCount++;
+			MultiClient.copySuccessCount.addAndGet(1);
 			System.out.println(String.format("[%s]副本战斗胜利", username));
 		}
 		else
 		{
-			MultiClient.copyFailCount++;
+			MultiClient.copyFailCount.addAndGet(1);
 			System.err.println(String.format("[%s]副本战斗失败", username));
 		}
 		if (copyChallengeTimes >= COPYCHALLENGECOUNT)
@@ -389,7 +389,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				// 啥都不测了，直接断开
 				closeByMe = true;
 				ctx.close();
-				MultiClient.normalFinishCount++;
+				MultiClient.normalFinishCount.addAndGet(1);
 				return;
 			}
 		}
@@ -410,12 +410,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
 		if (msg.result == 1)
 		{
-			MultiClient.arenaSuccessCount++;
+			MultiClient.arenaSuccessCount.addAndGet(1);
 			System.out.println(String.format("[%s]竞技场战斗胜利，排名[%d]>>[%d]", username, msg.myOldRank, msg.myNewRank));
 		}
 		else
 		{
-			MultiClient.arenaFailCount++;
+			MultiClient.arenaFailCount.addAndGet(1);
 			System.err.println(String.format("[%s]竞技场战斗失败", username));
 		}
 		if (arenaChallengeTimes >= ARENACHALLENGECOUNT)
@@ -426,7 +426,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				// 啥都不测了，直接断开
 				closeByMe = true;
 				ctx.close();
-				MultiClient.normalFinishCount++;
+				MultiClient.normalFinishCount.addAndGet(1);
 				return;
 			}
 		}

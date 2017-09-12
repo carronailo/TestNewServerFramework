@@ -94,10 +94,10 @@ public class RobotTest
 			{
 				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 					timeOnlyFormatter.format(new Date()),
-					MultiClient.loginTryCount, MultiClient.loginSuccessCount, MultiClient.loginFailCount,
-					MultiClient.copyChallengeCount, MultiClient.copySuccessCount, MultiClient.copyFailCount,
-					MultiClient.arenaChallengeCount, MultiClient.arenaSuccessCount, MultiClient.arenaFailCount,
-					MultiClient.normalFinishCount, MultiClient.errorFinishCount, MultiClient.unexpectedFinishCount));
+					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
+					MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+					MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
 			catch(Exception ignored)
@@ -122,10 +122,10 @@ public class RobotTest
 			{
 				System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 					timeOnlyFormatter.format(new Date()),
-					MultiClient.loginTryCount, MultiClient.loginSuccessCount, MultiClient.loginFailCount,
-					MultiClient.copyChallengeCount, MultiClient.copySuccessCount, MultiClient.copyFailCount,
-					MultiClient.arenaChallengeCount, MultiClient.arenaSuccessCount, MultiClient.arenaFailCount,
-					MultiClient.normalFinishCount, MultiClient.errorFinishCount, MultiClient.unexpectedFinishCount));
+					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
+					MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+					MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
 			catch(Exception ignored)
@@ -134,10 +134,10 @@ public class RobotTest
 		}
 		System.err.println(String.format("%s: 登录[t: %d, s: %d, f: %d], 副本[c: %d, s: %d, f: %d], 竞技场[c: %d, s: %d, f: %d], 结束[n: %d, e: %d, u: %d]",
 			timeOnlyFormatter.format(new Date()),
-			MultiClient.loginTryCount, MultiClient.loginSuccessCount, MultiClient.loginFailCount,
-			MultiClient.copyChallengeCount, MultiClient.copySuccessCount, MultiClient.copyFailCount,
-			MultiClient.arenaChallengeCount, MultiClient.arenaSuccessCount, MultiClient.arenaFailCount,
-			MultiClient.normalFinishCount, MultiClient.errorFinishCount, MultiClient.unexpectedFinishCount));
+			MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
+			MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
+			MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 		bootstrap.config().group().shutdownGracefully();
 	}
 }

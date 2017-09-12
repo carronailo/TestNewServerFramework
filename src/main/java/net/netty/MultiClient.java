@@ -13,25 +13,25 @@ import net.netty.messages.InBoundMessageMap;
 import net.netty.messages.OutBoundMessageMap;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by CarroNailo on 2017/9/6 10:31 for TestNewServerFramework.
  */
 public class MultiClient
 {
-	public static volatile int loginTryCount = 0;
-	public static volatile int loginSuccessCount = 0;
-	public static volatile int loginFailCount = 0;
-	public static volatile int copyChallengeCount = 0;
-	public static volatile int copySuccessCount = 0;
-	public static volatile int copyFailCount = 0;
-	public static volatile int arenaChallengeCount = 0;
-	public static volatile int arenaSuccessCount = 0;
-	public static volatile int arenaFailCount = 0;
-	public static volatile int normalFinishCount = 0;
-	public static volatile int errorFinishCount = 0;
-	public static volatile int unexpectedFinishCount = 0;
+	public static AtomicInteger loginTryCount = new AtomicInteger(0);
+	public static AtomicInteger loginSuccessCount = new AtomicInteger(0);
+	public static AtomicInteger loginFailCount = new AtomicInteger(0);
+	public static AtomicInteger copyChallengeCount = new AtomicInteger(0);
+	public static AtomicInteger copySuccessCount = new AtomicInteger(0);
+	public static AtomicInteger copyFailCount = new AtomicInteger(0);
+	public static AtomicInteger arenaChallengeCount = new AtomicInteger(0);
+	public static AtomicInteger arenaSuccessCount = new AtomicInteger(0);
+	public static AtomicInteger arenaFailCount = new AtomicInteger(0);
+	public static AtomicInteger normalFinishCount = new AtomicInteger(0);
+	public static AtomicInteger errorFinishCount = new AtomicInteger(0);
+	public static AtomicInteger unexpectedFinishCount = new AtomicInteger(0);
 
 	private static Random rand = new Random();
 
