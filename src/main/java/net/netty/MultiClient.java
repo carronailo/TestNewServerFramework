@@ -23,9 +23,11 @@ public class MultiClient
 	public static AtomicInteger loginTryCount = new AtomicInteger(0);
 	public static AtomicInteger loginSuccessCount = new AtomicInteger(0);
 	public static AtomicInteger loginFailCount = new AtomicInteger(0);
+	public static AtomicInteger copyTryCount = new AtomicInteger(0);
 	public static AtomicInteger copyChallengeCount = new AtomicInteger(0);
 	public static AtomicInteger copySuccessCount = new AtomicInteger(0);
 	public static AtomicInteger copyFailCount = new AtomicInteger(0);
+	public static AtomicInteger arenaTryCount = new AtomicInteger(0);
 	public static AtomicInteger arenaChallengeCount = new AtomicInteger(0);
 	public static AtomicInteger arenaSuccessCount = new AtomicInteger(0);
 	public static AtomicInteger arenaFailCount = new AtomicInteger(0);

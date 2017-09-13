@@ -268,6 +268,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			newMsg.pveType = 101;
 			System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
 			ctx.write(newMsg);
+			MultiClient.copyTryCount.addAndGet(1);
 		}
 		else if (TEST_PVP_ARENA)
 		{
@@ -312,6 +313,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			newMsg.opponentRoleID = msg.challengeTargets[2].roleID;
 			System.out.println(String.format("[%s]挑战[%s][%d]", username, msg.challengeTargets[2].nick, msg.challengeTargets[2].roleID));
 			ctx.writeAndFlush(newMsg);
+			MultiClient.arenaTryCount.addAndGet(1);
 		}
 	}
 
@@ -319,6 +321,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		++copyChallengeTimes;
 		if (msg.result == 0)
 		{
 			{
@@ -340,14 +343,42 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else
 		{
 			System.err.println(String.format("[%s]请求挑战副本失败：[%d]", username, msg.result));
+			MultiClient.copyFailCount.addAndGet(1);
+			if (copyChallengeTimes >= COPYCHALLENGECOUNT)
+			{
+				if (TEST_PVP_ARENA)
+				{
+					// 副本挑战测试结束，转向竞技场挑战测试
+					RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
+					ctx.write(newMsg);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					closeByMe = true;
+					ctx.close();
+					MultiClient.normalFinishCount.addAndGet(1);
+					return;
+				}
+			}
+			else
+			{
+				RequestPVEMsg newMsg = new RequestPVEMsg();
+				newMsg.copyID = 10001;
+				newMsg.pveType = 101;
+				System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
+				ctx.write(newMsg);
+				MultiClient.copyTryCount.addAndGet(1);
+			}
+			ctx.flush();
 		}
-		++copyChallengeTimes;
 	}
 
 	private void HandleRequestPVPReturn(final ChannelHandlerContext ctx, RequestPVPReturnMsg msg) throws Exception
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		++arenaChallengeTimes;
 		if (msg.result == 0)
 		{
 			{
@@ -369,8 +400,20 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else
 		{
 			System.err.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
+			MultiClient.arenaFailCount.addAndGet(1);
+			if (arenaChallengeTimes >= ARENACHALLENGECOUNT)
+			{
+				// 竞技场挑战测试结束，转向其他挑战
+				if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					closeByMe = true;
+					ctx.close();
+					MultiClient.normalFinishCount.addAndGet(1);
+					return;
+				}
+			}
 		}
-		++arenaChallengeTimes;
 	}
 
 	private void HandlePVEReckoningInfo(final ChannelHandlerContext ctx, PVEReckoningInfoMsg msg) throws Exception
@@ -411,6 +454,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			newMsg.pveType = 101;
 			System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
 			ctx.write(newMsg);
+			MultiClient.copyTryCount.addAndGet(1);
 		}
 		ctx.flush();
 	}
