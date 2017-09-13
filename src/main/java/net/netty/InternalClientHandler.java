@@ -174,15 +174,26 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			}
 			else
 			{
-				LoginMsg newMsg = new LoginMsg();
-				newMsg.userName = username;
-				newMsg.password = "111111";
-				newMsg.isAdult = 1;
-				newMsg.serverID = serverID;
-				newMsg.deviceIdentifier = "";
-				newMsg.deviceModel = "";
-				ctx.writeAndFlush(newMsg);
-				MultiClient.loginTryCount.addAndGet(1);
+				if(username != null && !username.isEmpty())
+				{
+					LoginMsg newMsg = new LoginMsg();
+					newMsg.userName = username;
+					newMsg.password = "111111";
+					newMsg.isAdult = 1;
+					newMsg.serverID = serverID;
+					newMsg.deviceIdentifier = "";
+					newMsg.deviceModel = "";
+					ctx.writeAndFlush(newMsg);
+					MultiClient.loginTryCount.addAndGet(1);
+				}
+				else
+				{
+					System.out.println("通道异常，username为空");
+					closeByMe = true;
+					ctx.close();
+					MultiClient.loginFailCount.addAndGet(1);
+					MultiClient.errorFinishCount.addAndGet(1);
+				}
 			}
 		}
 	}

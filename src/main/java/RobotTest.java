@@ -12,10 +12,7 @@ import net.netty.messages.InBoundMessageMap;
 import net.netty.messages.OutBoundMessageMap;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by CarroNailo on 2017/9/11 10:24 for TestNewServerFramework.
@@ -24,6 +21,24 @@ public class RobotTest
 {
 	private static Random rand = new Random();
 	private static SimpleDateFormat timeOnlyFormatter = new SimpleDateFormat("HH:mm:ss");
+
+	private static class TestInteger implements Comparable<TestInteger>
+	{
+		public int value;
+		public TestInteger(int value)
+		{
+			this.value = value;
+		}
+
+		@Override
+		public int compareTo(TestInteger comp)
+		{
+			if(value < comp.value)
+				return -1;
+			else
+				return 1;
+		}
+	}
 
 	public static void main(String[] args)
 	{
@@ -36,20 +51,20 @@ public class RobotTest
 		OutBoundMessageMap.getInstance();
 
 		final int clientNumber;
-		if(args.length > 0)
+		if (args.length > 0)
 			clientNumber = Integer.parseInt(args[0]);
 		else
-			clientNumber = 1;
+			clientNumber = 10000;
 
 		final int stepMilli;
-		if(args.length > 1)
+		if (args.length > 1)
 			stepMilli = Integer.parseInt(args[1]);
 		else
 			stepMilli = 20;
 
-		for(UserRoleTable userRole : userRoleTableContent)
+		for (UserRoleTable userRole : userRoleTableContent)
 		{
-			if(!userRole.userName.isEmpty())
+			if (!userRole.userName.isEmpty())
 			{
 				Pair<String, Integer> p = Pair.makePair(userRole.userName, 1002 + rand.nextInt(3));
 				InternalClientHandler.userQueue.add(p);
@@ -82,13 +97,13 @@ public class RobotTest
 					{
 					}
 //					fs.add(host.StartClient(i, "120.92.16.58", 6868, bootstrap));		// 外网IP
-					fs.add(host.StartClient(i, "172.31.32.12", 6868, bootstrap));		// 内网IP
-//					fs.add(host.StartClient(i, "127.0.0.1", 6868, bootstrap));
+//					fs.add(host.StartClient(i, "172.31.32.12", 6868, bootstrap));        // 内网IP
+					fs.add(host.StartClient(i, "127.0.0.1", 6868, bootstrap));
 				}
 			}
 		});
 
-		while(!workFuture.isDone())
+		while (!workFuture.isDone())
 		{
 			try
 			{
@@ -100,19 +115,19 @@ public class RobotTest
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
-			catch(Exception ignored)
+			catch (Exception ignored)
 			{
 			}
 		}
 		workGroup.shutdownGracefully();
 
 		boolean allDone = false;
-		while(!allDone)
+		while (!allDone)
 		{
 			allDone = true;
 			for (Future<?> f : fs)
 			{
-				if(!f.isDone())
+				if (!f.isDone())
 				{
 					allDone = false;
 					break;
@@ -128,7 +143,7 @@ public class RobotTest
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
-			catch(Exception ignored)
+			catch (Exception ignored)
 			{
 			}
 		}
@@ -139,5 +154,6 @@ public class RobotTest
 			MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
 			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 		bootstrap.config().group().shutdownGracefully();
+
 	}
 }
