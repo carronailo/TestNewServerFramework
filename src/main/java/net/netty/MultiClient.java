@@ -90,7 +90,7 @@ public class MultiClient
 
 	public Bootstrap PrepareBootstrap(int clientNumber)
 	{
-		EventLoopGroup workerGroup = new NioEventLoopGroup(32);
+		EventLoopGroup workerGroup = new NioEventLoopGroup(4);
 		try
 		{
 			Bootstrap b = new Bootstrap(); // (1)
