@@ -14,4 +14,6 @@ public class CID
 	public static final int ARENA_SOLO = 17;
 
 	public static final int ECHO = 37;
+
+	public static final int WORLDBOSS = 114;
 }

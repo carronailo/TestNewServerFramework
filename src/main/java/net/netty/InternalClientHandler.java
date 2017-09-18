@@ -2,7 +2,6 @@ package net.netty;
 
 import common.utility.Debug;
 import common.utility.Pair;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import net.netty.messages.inbound.*;
@@ -24,15 +23,24 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private static final int SERVERID = 11;
 	private static final int ARENACHALLENGECOUNT = 1;
 	private static final int COPYCHALLENGECOUNT = 1;
+	private static final int WORLDBOSSCHALLENGECOUNT = 1;
+	private static final int TOWERUPCHALLENGECOUNT = 1;
+	private static final int GUARDNPCCHALLENGECOUNT = 1;
 
 	private static final boolean TEST_LOGIN = true;
 	private static final boolean TEST_PVE_COPY = true;
 	private static final boolean TEST_PVP_ARENA = true;
+	private static final boolean TEST_WORLD_BOSS = true;
+	private static final boolean TEST_TOWER_UP = false;
+	private static final boolean TEST_GUARD_NPC = false;
 
 	private static final boolean STOP_ON_FINISH = true;
 
 	private int arenaChallengeTimes = 0;
 	private int copyChallengeTimes = 0;
+	private int worldBossChallengeTimes = 0;
+	private int towerUpChallengeTimes = 0;
+	private int guardNPCChallengeTimes = 0;
 
 	private boolean closeByMe = false;
 
@@ -138,6 +146,15 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				break;
 			case "PVEReckoningInfoMsg":
 				HandlePVEReckoningInfo(ctx, (PVEReckoningInfoMsg) msg);
+				break;
+			case "WorldBossDataMsg":
+				HandleWorldBossData(ctx, (WorldBossDataMsg)msg);
+				break;
+			case "WorldBossRankDataMsg":
+				HandleWorldBossRankData(ctx, (WorldBossRankDataMsg)msg);
+				break;
+			case "WorldBossBattleResultMsg":
+				HandleWorldBossBattleResult(ctx, (WorldBossBattleResultMsg)msg);
 				break;
 			default:
 //				System.out.println("未处理的消息");
@@ -260,32 +277,9 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			newMsg.z = 0;
 			ctx.write(newMsg);
 		}
-		if (TEST_PVE_COPY)
-		{
-			// 登录测试完毕，开始测试副本
-			RequestPVEMsg newMsg = new RequestPVEMsg();
-			newMsg.copyID = 10001;
-			newMsg.pveType = 101;
-			System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
-			ctx.write(newMsg);
-			MultiClient.copyTryCount.addAndGet(1);
-		}
-		else if (TEST_PVP_ARENA)
-		{
-			// 登录测试完毕，开始测试竞技场
-			RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
-			ctx.write(newMsg);
-		}
-		else if (STOP_ON_FINISH)
-		{
-			// 啥都不测了，直接断开
-			ctx.flush();
-			closeByMe = true;
-			ctx.close();
-			MultiClient.normalFinishCount.addAndGet(1);
-			return;
-		}
 		ctx.flush();
+
+		NextTest(ETestStep.Login, ctx, username);
 	}
 
 	private void HandleEnterScene(final ChannelHandlerContext ctx, SomeoneEnterSceneMsg msg) throws Exception
@@ -298,7 +292,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private void HandleArenaRankList(final ChannelHandlerContext ctx, ArenaRankListMsg msg) throws Exception
 	{
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		RequireUpdateArenaInfo newMsg = new RequireUpdateArenaInfo();
+		RequireUpdateArenaInfoMsg newMsg = new RequireUpdateArenaInfoMsg();
 		ctx.writeAndFlush(newMsg);
 	}
 
@@ -307,70 +301,52 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
 		System.out.println(String.format("[%s]竞技场排名[%d]", username, msg.rank));
-		if (arenaChallengeTimes < ARENACHALLENGECOUNT)
-		{
-			RequirePKPlayer newMsg = new RequirePKPlayer();
-			newMsg.opponentRoleID = msg.challengeTargets[2].roleID;
-			System.out.println(String.format("[%s]挑战[%s][%d]", username, msg.challengeTargets[2].nick, msg.challengeTargets[2].roleID));
-			ctx.writeAndFlush(newMsg);
-			MultiClient.arenaTryCount.addAndGet(1);
-		}
+		if (arenaChallengeTimes >= ARENACHALLENGECOUNT)
+			NextTest(ETestStep.Arena, ctx, username);
+		else
+			_StartTestArenaByRankInfo(ctx, msg, username);
 	}
 
 	private void HandleRequestPVEReturn(final ChannelHandlerContext ctx, RequestPVEReturnMsg msg) throws Exception
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		++copyChallengeTimes;
-		if (msg.result == 0)
+		switch (msg.pveType)
 		{
-			{
-				SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
-				ctx.write(newMsg);
-			}
-			{
-				RequestReckoningMsg newMsg = new RequestReckoningMsg();
-				newMsg.battleTime = 0;
-				newMsg.hpRemain = msg.charAttributes[3];
-				newMsg.playerAttributes = msg.charAttributes;
-				newMsg.turnAttributes = new int[0];
-				newMsg.result = 1;
-				ctx.write(newMsg);
-			}
-			ctx.flush();
-			MultiClient.copyChallengeCount.addAndGet(1);
-		}
-		else
-		{
-			System.err.println(String.format("[%s]请求挑战副本失败：[%d]", username, msg.result));
-			MultiClient.copyFailCount.addAndGet(1);
-			if (copyChallengeTimes >= COPYCHALLENGECOUNT)
-			{
-				if (TEST_PVP_ARENA)
+			case 101:
+				++copyChallengeTimes;
+				if (msg.result == 0)
 				{
-					// 副本挑战测试结束，转向竞技场挑战测试
-					RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
-					ctx.write(newMsg);
+					ProceedCopy(ctx, msg);
+					MultiClient.copyChallengeCount.addAndGet(1);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
-					// 啥都不测了，直接断开
-					closeByMe = true;
-					ctx.close();
-					MultiClient.normalFinishCount.addAndGet(1);
-					return;
+					System.err.println(String.format("[%s]请求挑战副本失败：[%d]", username, msg.result));
+					MultiClient.copyFailCount.addAndGet(1);
+					if (copyChallengeTimes >= COPYCHALLENGECOUNT)
+						NextTest(ETestStep.Copy, ctx, username);
+					else
+						StartTestCopy(ctx, username);
 				}
-			}
-			else
-			{
-				RequestPVEMsg newMsg = new RequestPVEMsg();
-				newMsg.copyID = 10001;
-				newMsg.pveType = 101;
-				System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
-				ctx.write(newMsg);
-				MultiClient.copyTryCount.addAndGet(1);
-			}
-			ctx.flush();
+				break;
+			case (byte)218:
+				++worldBossChallengeTimes;
+				if(msg.result == 0)
+				{
+					ProceedWorldBoss(ctx, msg);
+					MultiClient.worldBossChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.err.println(String.format("[%s]请求挑战世界Boss失败：[%d]", username, msg.result));
+					MultiClient.worldBossFailCount.addAndGet(1);
+					if(worldBossChallengeTimes >= WORLDBOSSCHALLENGECOUNT)
+						NextTest(ETestStep.WorldBoss, ctx, username);
+					else
+						StartTestWorldBoss(ctx, username);
+				}
+				break;
 		}
 	}
 
@@ -381,38 +357,14 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		++arenaChallengeTimes;
 		if (msg.result == 0)
 		{
-			{
-				SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
-				ctx.write(newMsg);
-			}
-			{
-				RequestReckoningMsg newMsg = new RequestReckoningMsg();
-				newMsg.battleTime = 0;
-				newMsg.hpRemain = msg.charAttributes[3];
-				newMsg.playerAttributes = msg.charAttributes;
-				newMsg.turnAttributes = new int[0];
-				newMsg.result = 1;
-				ctx.write(newMsg);
-			}
-			ctx.flush();
+			ProceedArena(ctx, msg);
 			MultiClient.arenaChallengeCount.addAndGet(1);
 		}
 		else
 		{
 			System.err.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
 			MultiClient.arenaFailCount.addAndGet(1);
-			if (arenaChallengeTimes >= ARENACHALLENGECOUNT)
-			{
-				// 竞技场挑战测试结束，转向其他挑战
-				if (STOP_ON_FINISH)
-				{
-					// 啥都不测了，直接断开
-					closeByMe = true;
-					ctx.close();
-					MultiClient.normalFinishCount.addAndGet(1);
-					return;
-				}
-			}
+			StartTestArena(ctx, username);
 		}
 	}
 
@@ -431,32 +383,9 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			System.err.println(String.format("[%s]副本战斗失败", username));
 		}
 		if (copyChallengeTimes >= COPYCHALLENGECOUNT)
-		{
-			if (TEST_PVP_ARENA)
-			{
-				// 副本挑战测试结束，转向竞技场挑战测试
-				RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
-				ctx.write(newMsg);
-			}
-			else if (STOP_ON_FINISH)
-			{
-				// 啥都不测了，直接断开
-				closeByMe = true;
-				ctx.close();
-				MultiClient.normalFinishCount.addAndGet(1);
-				return;
-			}
-		}
+			NextTest(ETestStep.Copy, ctx, username);
 		else
-		{
-			RequestPVEMsg newMsg = new RequestPVEMsg();
-			newMsg.copyID = 10001;
-			newMsg.pveType = 101;
-			System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
-			ctx.write(newMsg);
-			MultiClient.copyTryCount.addAndGet(1);
-		}
-		ctx.flush();
+			StartTestCopy(ctx, username);
 	}
 
 	private void HandlePVPReckoningInfo(final ChannelHandlerContext ctx, PVPReckoningInfoMsg msg) throws Exception
@@ -473,17 +402,293 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			MultiClient.arenaFailCount.addAndGet(1);
 			System.err.println(String.format("[%s]竞技场战斗失败", username));
 		}
-		if (arenaChallengeTimes >= ARENACHALLENGECOUNT)
+	}
+
+	private void HandleWorldBossData(ChannelHandlerContext ctx, WorldBossDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]世界Boss血量[%d / %d], 挑战次数[%d / %d]", username, msg.bossCurHP, msg.bossTotalHP, msg.challengeLeftCount, msg.challengeTotalCount));
+	}
+
+	private void HandleWorldBossRankData(ChannelHandlerContext ctx, WorldBossRankDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		if (worldBossChallengeTimes >= WORLDBOSSCHALLENGECOUNT)
+			NextTest(ETestStep.WorldBoss, ctx, username);
+		else
+			_StartTestWorldBossByRankData(ctx, msg, username);
+	}
+
+	private void HandleWorldBossBattleResult(ChannelHandlerContext ctx, WorldBossBattleResultMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		MultiClient.worldBossSuccessCount.addAndGet(1);
+		System.out.println(String.format("[%s]世界Boss战斗胜利，排名[%d]，伤害[%d]", username, msg.myRank, msg.damageValue));
+		if (worldBossChallengeTimes >= WORLDBOSSCHALLENGECOUNT)
+			NextTest(ETestStep.WorldBoss, ctx, username);
+		else
+			StartTestWorldBoss(ctx, username);
+	}
+
+	private void StartTestCopy(ChannelHandlerContext ctx, String username)
+	{
+		RequestPVEMsg newMsg = new RequestPVEMsg();
+		newMsg.copyID = 10001;
+		newMsg.pveType = 101;
+		System.out.println(String.format("[%s]挑战副本[%d]", username, newMsg.copyID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.copyTryCount.addAndGet(1);
+	}
+
+	private void ProceedCopy(ChannelHandlerContext ctx, RequestPVEReturnMsg msg)
+	{
 		{
-			// 竞技场挑战测试结束，转向其他挑战
-			if (STOP_ON_FINISH)
-			{
-				// 啥都不测了，直接断开
-				closeByMe = true;
-				ctx.close();
-				MultiClient.normalFinishCount.addAndGet(1);
-				return;
-			}
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
 		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void StartTestArena(ChannelHandlerContext ctx, String username)
+	{
+		RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
+		ctx.writeAndFlush(newMsg);
+	}
+
+	private void _StartTestArenaByRankInfo(ChannelHandlerContext ctx, ArenaRankInfoMsg msg, String username)
+	{
+		RequirePKPlayerMsg newMsg = new RequirePKPlayerMsg();
+		newMsg.opponentRoleID = msg.challengeTargets[2].roleID;
+		System.out.println(String.format("[%s]挑战[%s][%d]", username, msg.challengeTargets[2].nick, msg.challengeTargets[2].roleID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.arenaTryCount.addAndGet(1);
+	}
+
+	private void ProceedArena(ChannelHandlerContext ctx, RequestPVPReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void StartTestWorldBoss(ChannelHandlerContext ctx, String username)
+	{
+		{
+			RequireWorldBossDataMsg newMsg = new RequireWorldBossDataMsg();
+			ctx.write(newMsg);
+		}
+		{
+			RequireWorldBossRankDataMsg newMsg = new RequireWorldBossRankDataMsg();
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void _StartTestWorldBossByRankData(ChannelHandlerContext ctx, WorldBossRankDataMsg msg, String username)
+	{
+		BeginChallengeWorldBossMsg newMsg = new BeginChallengeWorldBossMsg();
+		System.out.println(String.format("[%s]挑战世界BOSS", username));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.worldBossTryCount.addAndGet(1);
+	}
+
+	private void ProceedWorldBoss(ChannelHandlerContext ctx, RequestPVEReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			WorldBossHurtPerHitMsg newMsg = new WorldBossHurtPerHitMsg();
+			newMsg.hurtValue = 1;
+			ctx.write(newMsg);
+		}
+		{
+			WorldBossSubmitHurtValueMsg newMsg = new WorldBossSubmitHurtValueMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.hurtValue = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void StartTestTowerUp(ChannelHandlerContext ctx, String username)
+	{
+
+	}
+
+	private void StartTestGuardNPC(ChannelHandlerContext ctx, String username)
+	{
+
+	}
+
+	private void NextTest(ETestStep currentStep, ChannelHandlerContext ctx, String username)
+	{
+		switch (currentStep)
+		{
+			case Login:
+				if (TEST_PVE_COPY)
+				{
+					// 登录测试完毕，开始测试副本
+					StartTestCopy(ctx, username);
+				}
+				else if (TEST_PVP_ARENA)
+				{
+					// 登录测试完毕，开始测试竞技场
+					StartTestArena(ctx, username);
+				}
+				else if(TEST_WORLD_BOSS)
+				{
+					// 登录测试完毕，开始测试世界Boss
+					StartTestWorldBoss(ctx, username);
+				}
+				else if(TEST_TOWER_UP)
+				{
+					// 登录测试完毕，开始测试爬塔
+					StartTestTowerUp(ctx, username);
+				}
+				else if(TEST_GUARD_NPC)
+				{
+					// 登录测试完毕，开始测试守护洛羽
+					StartTestGuardNPC(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case Copy:
+				if (TEST_PVP_ARENA)
+				{
+					// 挑战副本测试完毕，开始测试竞技场
+					StartTestArena(ctx, username);
+				}
+				else if(TEST_WORLD_BOSS)
+				{
+					// 挑战副本测试完毕，开始测试世界Boss
+					StartTestWorldBoss(ctx, username);
+				}
+				else if(TEST_TOWER_UP)
+				{
+					// 挑战副本测试完毕，开始测试爬塔
+					StartTestTowerUp(ctx, username);
+				}
+				else if(TEST_GUARD_NPC)
+				{
+					// 挑战副本测试完毕，开始测试守护洛羽
+					StartTestGuardNPC(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case Arena:
+				if(TEST_WORLD_BOSS)
+				{
+					// 挑战竞技场测试完毕，开始测试世界Boss
+					StartTestWorldBoss(ctx, username);
+				}
+				else if(TEST_TOWER_UP)
+				{
+					// 挑战竞技场测试完毕，开始测试爬塔
+					StartTestTowerUp(ctx, username);
+				}
+				else if(TEST_GUARD_NPC)
+				{
+					// 挑战竞技场测试完毕，开始测试守护洛羽
+					StartTestGuardNPC(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case WorldBoss:
+				if(TEST_TOWER_UP)
+				{
+					// 挑战世界BOSS测试完毕，开始测试爬塔
+					StartTestTowerUp(ctx, username);
+				}
+				else if(TEST_GUARD_NPC)
+				{
+					// 挑战世界BOSS测试完毕，开始测试守护洛羽
+					StartTestGuardNPC(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case TowerUp:
+				if(TEST_GUARD_NPC)
+				{
+					// 挑战爬塔测试完毕，开始测试守护洛羽
+					StartTestGuardNPC(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case GuardNPC:
+				if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void StopTest(ChannelHandlerContext ctx)
+	{
+		ctx.flush();
+		closeByMe = true;
+		ctx.close();
+		MultiClient.normalFinishCount.addAndGet(1);
+	}
+
+	private enum ETestStep
+	{
+		Login,
+		Copy,
+		Arena,
+		WorldBoss,
+		TowerUp,
+		GuardNPC,
 	}
 }

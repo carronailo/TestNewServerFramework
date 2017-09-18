@@ -29,6 +29,11 @@ public class MID
 
 		// ECHO
 		public static final int ECHO_Echo = 1;
+
+		// World Boss
+		public static final int WORLD_BOSS_WorldBossData = 0;
+		public static final int WORLD_BOSS_WorldBossRankData = 1;
+		public static final int WORLD_BOSS_WorldBossBattleResult = 3;
 	}
 
 	public class ClientSide
@@ -55,7 +60,13 @@ public class MID
 		public static final int ARENA_SOLO_RequeireRankList = 11;
 
 		// ECHO
-		// Client side
 		public static final int ECHO_EchoReturn = 1;
+
+		// World Boss
+		public static final int WORLD_BOSS_RequireWorldBossData = 0;
+		public static final int WORLD_BOSS_RequireWorldBossRankData = 1;
+		public static final int WORLD_BOSS_BeginChallenge = 2;
+		public static final int WORLD_BOSS_SubmitHurtValue = 3;
+		public static final int WORLD_BOSS_HurtValuePerHit = 4;
 	}
 }
