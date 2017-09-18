@@ -2,6 +2,7 @@ package net.netty;
 
 import common.utility.Debug;
 import common.utility.Pair;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import net.netty.messages.inbound.*;
@@ -31,7 +32,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private static final boolean TEST_PVE_COPY = true;
 	private static final boolean TEST_PVP_ARENA = true;
 	private static final boolean TEST_WORLD_BOSS = true;
-	private static final boolean TEST_TOWER_UP = false;
+	private static final boolean TEST_TOWER_UP = true;
 	private static final boolean TEST_GUARD_NPC = false;
 
 	private static final boolean STOP_ON_FINISH = true;
@@ -51,6 +52,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		if (!userQueue.isEmpty())
 		{
 			Pair<String, Integer> p = userQueue.poll();
+//			Pair<String, Integer> p = (Pair<String, Integer>)userQueue.toArray()[userQueue.size() - 1];
 			if (p != null)
 			{
 				((ExtendedNioSocketChannel) ctx.channel()).username = p.first;
@@ -155,6 +157,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				break;
 			case "WorldBossBattleResultMsg":
 				HandleWorldBossBattleResult(ctx, (WorldBossBattleResultMsg)msg);
+				break;
+			case "TowerUpDataMsg":
+				HandleTowerUpData(ctx, (TowerUpDataMsg)msg);
+				break;
+			case "TowerUpRankingMsg":
+				HandleTowerUpRankingMsg(ctx, (TowerUpRankingMsg)msg);
 				break;
 			default:
 //				System.out.println("未处理的消息");
@@ -347,6 +355,23 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 						StartTestWorldBoss(ctx, username);
 				}
 				break;
+			case (byte)212:
+				++towerUpChallengeTimes;
+				if(msg.result == 0)
+				{
+					ProceedTowerUp(ctx, msg);
+					MultiClient.towerUpChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.err.println(String.format("[%s]请求挑战爬塔失败：[%d]", username, msg.result));
+					MultiClient.towerUpFailCount.addAndGet(1);
+					if(towerUpChallengeTimes >= TOWERUPCHALLENGECOUNT)
+						NextTest(ETestStep.TowerUp, ctx, username);
+					else
+						StartTestTowerUp(ctx, username);
+				}
+				break;
 		}
 	}
 
@@ -372,20 +397,41 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		if (msg.result == 1)
+		switch (msg.type)
 		{
-			MultiClient.copySuccessCount.addAndGet(1);
-			System.out.println(String.format("[%s]副本战斗胜利", username));
+			case 11:
+				if (msg.result == 1)
+				{
+					MultiClient.copySuccessCount.addAndGet(1);
+					System.out.println(String.format("[%s]副本战斗胜利", username));
+				}
+				else
+				{
+					MultiClient.copyFailCount.addAndGet(1);
+					System.err.println(String.format("[%s]副本战斗失败", username));
+				}
+				if (copyChallengeTimes >= COPYCHALLENGECOUNT)
+					NextTest(ETestStep.Copy, ctx, username);
+				else
+					StartTestCopy(ctx, username);
+				break;
+			case 84:
+				if (msg.result == 1)
+				{
+					MultiClient.towerUpSuccessCount.addAndGet(1);
+					System.out.println(String.format("[%s]爬塔战斗胜利", username));
+				}
+				else
+				{
+					MultiClient.towerUpFailCount.addAndGet(1);
+					System.err.println(String.format("[%s]爬塔战斗失败", username));
+				}
+				if (towerUpChallengeTimes >= TOWERUPCHALLENGECOUNT)
+					NextTest(ETestStep.TowerUp, ctx, username);
+				else
+					StartTestTowerUp(ctx, username);
+				break;
 		}
-		else
-		{
-			MultiClient.copyFailCount.addAndGet(1);
-			System.err.println(String.format("[%s]副本战斗失败", username));
-		}
-		if (copyChallengeTimes >= COPYCHALLENGECOUNT)
-			NextTest(ETestStep.Copy, ctx, username);
-		else
-			StartTestCopy(ctx, username);
 	}
 
 	private void HandlePVPReckoningInfo(final ChannelHandlerContext ctx, PVPReckoningInfoMsg msg) throws Exception
@@ -431,6 +477,23 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			NextTest(ETestStep.WorldBoss, ctx, username);
 		else
 			StartTestWorldBoss(ctx, username);
+	}
+
+	private void HandleTowerUpData(ChannelHandlerContext ctx, TowerUpDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]爬塔 当前层[%d]", username, msg.curFloor));
+	}
+
+	private void HandleTowerUpRankingMsg(ChannelHandlerContext ctx, TowerUpRankingMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		if (towerUpChallengeTimes >= TOWERUPCHALLENGECOUNT)
+			NextTest(ETestStep.TowerUp, ctx, username);
+		else
+			_StartTestTowerUpByRankData(ctx, msg, username);
 	}
 
 	private void StartTestCopy(ChannelHandlerContext ctx, String username)
@@ -540,7 +603,36 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void StartTestTowerUp(ChannelHandlerContext ctx, String username)
 	{
+		RequireTowerUpRankingMsg newMsg = new RequireTowerUpRankingMsg();
+		ctx.writeAndFlush(newMsg);
+	}
 
+	private void _StartTestTowerUpByRankData(ChannelHandlerContext ctx, TowerUpRankingMsg msg, String username)
+	{
+		RequestPVEMsg newMsg = new RequestPVEMsg();
+		newMsg.copyID = 40001;
+		newMsg.pveType = (byte)212;
+		System.out.println(String.format("[%s]挑战爬塔[%d]", username, newMsg.copyID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.towerUpTryCount.addAndGet(1);
+	}
+
+	private void ProceedTowerUp(ChannelHandlerContext ctx, RequestPVEReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
 	}
 
 	private void StartTestGuardNPC(ChannelHandlerContext ctx, String username)

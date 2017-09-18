@@ -107,17 +107,16 @@ public class RobotTest
 		{
 			try
 			{
-				System.err.println(String.format("%s: \r\n登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
-					timeOnlyFormatter.format(new Date()),
+				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
+					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
+				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
 					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-				System.err.println(String.format("世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
+				System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
 					MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
 					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
-				System.err.println(String.format("结束[n: %d, e: %d, u: %d]",
-					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
 			catch (Exception ignored)
@@ -140,34 +139,32 @@ public class RobotTest
 			}
 			try
 			{
-				System.err.println(String.format("%s: \r\n登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
-					timeOnlyFormatter.format(new Date()),
+				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
+					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
+				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
 					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-				System.err.println(String.format("世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
+				System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
 					MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
 					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
-				System.err.println(String.format("结束[n: %d, e: %d, u: %d]",
-					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 				Thread.sleep(1000);
 			}
 			catch (Exception ignored)
 			{
 			}
 		}
-		System.err.println(String.format("%s: \r\n登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
-			timeOnlyFormatter.format(new Date()),
+		System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
+			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
+		System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
 			MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 			MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
 			MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-		System.err.println(String.format("世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
+		System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
 			MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
 			MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
 			MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
-		System.err.println(String.format("结束[n: %d, e: %d, u: %d]",
-			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
 		bootstrap.config().group().shutdownGracefully();
 
 	}

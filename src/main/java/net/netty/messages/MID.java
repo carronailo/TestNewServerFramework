@@ -30,6 +30,10 @@ public class MID
 		// ECHO
 		public static final int ECHO_Echo = 1;
 
+		// Tower Up
+		public static final int TOWER_UP_TowerUpData = 0;
+		public static final int TOWER_UP_TowerUpRanking = 2;
+
 		// World Boss
 		public static final int WORLD_BOSS_WorldBossData = 0;
 		public static final int WORLD_BOSS_WorldBossRankData = 1;
@@ -61,6 +65,10 @@ public class MID
 
 		// ECHO
 		public static final int ECHO_EchoReturn = 1;
+
+		// Tower Up
+		public static final int TOWER_UP_RequireTowerUpData = 0;
+		public static final int TOWER_UP_RequireTowerUpRanking = 6;
 
 		// World Boss
 		public static final int WORLD_BOSS_RequireWorldBossData = 0;
