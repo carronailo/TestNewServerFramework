@@ -22,24 +22,6 @@ public class RobotTest
 	private static Random rand = new Random();
 	private static SimpleDateFormat timeOnlyFormatter = new SimpleDateFormat("HH:mm:ss");
 
-	private static class TestInteger implements Comparable<TestInteger>
-	{
-		public int value;
-		public TestInteger(int value)
-		{
-			this.value = value;
-		}
-
-		@Override
-		public int compareTo(TestInteger comp)
-		{
-			if(value < comp.value)
-				return -1;
-			else
-				return 1;
-		}
-	}
-
 	public static void main(String[] args)
 	{
 		ConfigTableMap.getInstance();
@@ -50,17 +32,16 @@ public class RobotTest
 		InBoundMessageMap.getInstance();
 		OutBoundMessageMap.getInstance();
 
-		final int clientNumber;
-		if (args.length > 0)
-			clientNumber = Integer.parseInt(args[0]);
-		else
-			clientNumber = 10000;
+		if(args.length < 3)
+		{
+			System.out.println("Usage: java -jar [jar file] [client]:[port] [client number] [interval milliseconds]");
+			return;
+		}
 
-		final int stepMilli;
-		if (args.length > 1)
-			stepMilli = Integer.parseInt(args[1]);
-		else
-			stepMilli = 20;
+		final String host = args[0].substring(0, args[0].indexOf(":"));
+		final int port = Integer.parseInt(args[0].substring(args[0].indexOf(":") + 1));
+		final int clientNumber = Integer.parseInt(args[1]);
+		final int stepMilli = Integer.parseInt(args[2]);
 
 		for (UserRoleTable userRole : userRoleTableContent)
 		{
@@ -72,8 +53,8 @@ public class RobotTest
 			InternalClientHandler.roleList.add(userRole.roleid);
 		}
 
-		MultiClient host = new MultiClient();
-		Bootstrap bootstrap = host.PrepareBootstrap(clientNumber);
+		MultiClient client = new MultiClient();
+		Bootstrap bootstrap = client.PrepareBootstrap(clientNumber);
 		if (bootstrap == null)
 			return;
 
@@ -96,9 +77,10 @@ public class RobotTest
 					catch (Exception ignored)
 					{
 					}
-//					fs.add(host.StartClient(i, "120.92.16.58", 6868, bootstrap));		// 外网IP
-//					fs.add(host.StartClient(i, "172.31.32.12", 6868, bootstrap));        // 内网IP
-					fs.add(host.StartClient(i, "127.0.0.1", 6868, bootstrap));
+//					fs.add(client.StartClient(i, "120.92.16.58", 6868, bootstrap));		// 外网IP
+//					fs.add(client.StartClient(i, "172.31.32.12", 6868, bootstrap));        // 内网IP
+//					fs.add(client.StartClient(i, "127.0.0.1", 6868, bootstrap));
+					fs.add(client.StartClient(i, host, port, bootstrap));
 				}
 			}
 		});

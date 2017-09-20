@@ -36,8 +36,8 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private static final boolean TEST_WORLD_BOSS = true;
 	private static final boolean TEST_TOWER_UP = true;
 	private static final boolean TEST_GUARD_NPC = true;
-	private static final boolean TEST_EXPEDITION = false;
-	private static final boolean TEST_TREASURE_ROAD = false;
+	private static final boolean TEST_EXPEDITION = true;
+	private static final boolean TEST_TREASURE_ROAD = true;
 
 	private static final boolean STOP_ON_FINISH = true;
 
@@ -201,6 +201,9 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				break;
 			case "TRoadHistoryMsg":
 				HandleTreasureRoadHistory(ctx, (TRoadHistoryMsg)msg);
+				break;
+			case "GameTipsMsg":
+				HandleGameTips(ctx, (GameTipsMsg)msg);
 				break;
 			default:
 //				System.out.println("未处理的消息");
@@ -368,7 +371,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战副本失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战副本失败：[%d]", username, msg.result));
 					MultiClient.copyFailCount.addAndGet(1);
 					if (copyChallengeTimes >= COPYCHALLENGECOUNT)
 						NextTest(ETestStep.Copy, ctx, username);
@@ -385,7 +388,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战世界Boss失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战世界Boss失败：[%d]", username, msg.result));
 					MultiClient.worldBossFailCount.addAndGet(1);
 					if(worldBossChallengeTimes >= WORLDBOSSCHALLENGECOUNT)
 						NextTest(ETestStep.WorldBoss, ctx, username);
@@ -402,7 +405,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战爬塔失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战爬塔失败：[%d]", username, msg.result));
 					MultiClient.towerUpFailCount.addAndGet(1);
 					if(towerUpChallengeTimes >= TOWERUPCHALLENGECOUNT)
 						NextTest(ETestStep.TowerUp, ctx, username);
@@ -419,7 +422,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.result));
 					MultiClient.guardNPCFailCount.addAndGet(1);
 					if(guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
 						NextTest(ETestStep.GuardNPC, ctx, username);
@@ -462,7 +465,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
 					MultiClient.arenaFailCount.addAndGet(1);
 					StartTestArena(ctx, username);
 				}
@@ -499,7 +502,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				else
 				{
 					MultiClient.copyFailCount.addAndGet(1);
-					System.err.println(String.format("[%s]副本战斗失败", username));
+					System.out.println(String.format("[%s]副本战斗失败", username));
 				}
 				if (copyChallengeTimes >= COPYCHALLENGECOUNT)
 					NextTest(ETestStep.Copy, ctx, username);
@@ -515,7 +518,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				else
 				{
 					MultiClient.towerUpFailCount.addAndGet(1);
-					System.err.println(String.format("[%s]爬塔战斗失败", username));
+					System.out.println(String.format("[%s]爬塔战斗失败", username));
 				}
 				if (towerUpChallengeTimes >= TOWERUPCHALLENGECOUNT)
 					NextTest(ETestStep.TowerUp, ctx, username);
@@ -540,12 +543,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				else
 				{
 					MultiClient.arenaFailCount.addAndGet(1);
-					System.err.println(String.format("[%s]竞技场战斗失败", username));
+					System.out.println(String.format("[%s]竞技场战斗失败", username));
 				}
 				break;
 			case 86:
 				MultiClient.treasureRoadFailCount.addAndGet(1);
-				System.err.println(String.format("[%s]夺宝战斗失败", username));
+				System.out.println(String.format("[%s]夺宝战斗失败", username));
 				break;
 		}
 	}
@@ -629,7 +632,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		System.err.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.failID));
+		System.out.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.failID));
 		MultiClient.guardNPCFailCount.addAndGet(1);
 		if(guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
 			NextTest(ETestStep.GuardNPC, ctx, username);
@@ -656,7 +659,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else
 		{
 			MultiClient.expeditionFailCount.addAndGet(1);
-			System.err.println(String.format("[%s]远征战斗失败", username));
+			System.out.println(String.format("[%s]远征战斗失败", username));
 		}
 		if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
 			NextTest(ETestStep.Expedition, ctx, username);
@@ -700,6 +703,27 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+	}
+
+	private void HandleGameTips(ChannelHandlerContext ctx, GameTipsMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		switch (msg.tipsStr)
+		{
+			case "活动未开启":
+				if(currentTestStep == ETestStep.WorldBoss)
+				{
+					++worldBossChallengeTimes;
+					System.out.println(String.format("[%s]请求挑战世界Boss失败：活动未开启", username));
+					MultiClient.worldBossFailCount.addAndGet(1);
+					if(worldBossChallengeTimes >= WORLDBOSSCHALLENGECOUNT)
+						NextTest(ETestStep.WorldBoss, ctx, username);
+					else
+						StartTestWorldBoss(ctx, username);
+				}
+				break;
+		}
 	}
 
 	private void StartTestCopy(ChannelHandlerContext ctx, String username)

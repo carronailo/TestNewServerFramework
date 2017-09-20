@@ -15,6 +15,7 @@ public class CID
 
 	public static final int ECHO = 37;
 
+	public static final int TIPS = 64;
 	public static final int TOWERUP = 65;
 
 	public static final int Expedition = 67;

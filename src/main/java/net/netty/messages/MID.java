@@ -33,6 +33,9 @@ public class MID
 		// ECHO
 		public static final int ECHO_Echo = 1;
 
+		// Tips
+		public static final int TIPS_GameTips = 1;
+
 		// Tower Up
 		public static final int TOWER_UP_TowerUpData = 0;
 		public static final int TOWER_UP_TowerUpRanking = 2;
@@ -82,6 +85,8 @@ public class MID
 
 		// ECHO
 		public static final int ECHO_EchoReturn = 1;
+
+		// Tips
 
 		// Tower Up
 		public static final int TOWER_UP_RequireTowerUpData = 0;
