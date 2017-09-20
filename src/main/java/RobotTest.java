@@ -109,14 +109,16 @@ public class RobotTest
 			{
 				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
-				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
+				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-				System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
-					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
+					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get()));
+				System.err.println(String.format("\t\t\t爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d], 远征[t: %d, c: %d, s: %d, f: %d], 夺宝[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
-					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
+					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get(),
+					MultiClient.expeditionTryCount.get(), MultiClient.expeditionChallengeCount.get(), MultiClient.expeditionSuccessCount.get(), MultiClient.expeditionFailCount.get(),
+					MultiClient.treasureRoadTryCount.get(), MultiClient.treasureRoadChallengeCount.get(), MultiClient.treasureRoadSuccessCount.get(), MultiClient.treasureRoadFailCount.get()));
 				Thread.sleep(1000);
 			}
 			catch (Exception ignored)
@@ -141,14 +143,16 @@ public class RobotTest
 			{
 				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
-				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
+				System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 					MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-				System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
-					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
+					MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+					MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get()));
+				System.err.println(String.format("\t\t\t爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d], 远征[t: %d, c: %d, s: %d, f: %d], 夺宝[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
-					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
+					MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get(),
+					MultiClient.expeditionTryCount.get(), MultiClient.expeditionChallengeCount.get(), MultiClient.expeditionSuccessCount.get(), MultiClient.expeditionFailCount.get(),
+					MultiClient.treasureRoadTryCount.get(), MultiClient.treasureRoadChallengeCount.get(), MultiClient.treasureRoadSuccessCount.get(), MultiClient.treasureRoadFailCount.get()));
 				Thread.sleep(1000);
 			}
 			catch (Exception ignored)
@@ -157,14 +161,16 @@ public class RobotTest
 		}
 		System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d]", timeOnlyFormatter.format(new Date()),
 			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get()));
-		System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d]",
+		System.err.println(String.format("\t\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 			MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
 			MultiClient.copyTryCount.get(), MultiClient.copyChallengeCount.get(), MultiClient.copySuccessCount.get(), MultiClient.copyFailCount.get(),
-			MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get()));
-		System.err.println(String.format("\t\t\t世界Boss[t: %d, c: %d, s: %d, f: %d], 爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d]",
-			MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get(),
+			MultiClient.arenaTryCount.get(), MultiClient.arenaChallengeCount.get(), MultiClient.arenaSuccessCount.get(), MultiClient.arenaFailCount.get(),
+			MultiClient.worldBossTryCount.get(), MultiClient.worldBossChallengeCount.get(), MultiClient.worldBossSuccessCount.get(), MultiClient.worldBossFailCount.get()));
+		System.err.println(String.format("\t\t\t爬塔[t: %d, c: %d, s: %d, f: %d], 守护洛羽[t: %d, c: %d, s: %d, f: %d], 远征[t: %d, c: %d, s: %d, f: %d], 夺宝[t: %d, c: %d, s: %d, f: %d]",
 			MultiClient.towerUpTryCount.get(), MultiClient.towerUpChallengeCount.get(), MultiClient.towerUpSuccessCount.get(), MultiClient.towerUpFailCount.get(),
-			MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get()));
+			MultiClient.guardNPCTryCount.get(), MultiClient.guardNPCChallengeCount.get(), MultiClient.guardNPCSuccessCount.get(), MultiClient.guardNPCFailCount.get(),
+			MultiClient.expeditionTryCount.get(), MultiClient.expeditionChallengeCount.get(), MultiClient.expeditionSuccessCount.get(), MultiClient.expeditionFailCount.get(),
+			MultiClient.treasureRoadTryCount.get(), MultiClient.treasureRoadChallengeCount.get(), MultiClient.treasureRoadSuccessCount.get(), MultiClient.treasureRoadFailCount.get()));
 		bootstrap.config().group().shutdownGracefully();
 
 	}

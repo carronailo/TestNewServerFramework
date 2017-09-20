@@ -43,6 +43,14 @@ public class MultiClient
 	public static AtomicInteger guardNPCChallengeCount = new AtomicInteger(0);
 	public static AtomicInteger guardNPCSuccessCount = new AtomicInteger(0);
 	public static AtomicInteger guardNPCFailCount = new AtomicInteger(0);
+	public static AtomicInteger expeditionTryCount = new AtomicInteger(0);
+	public static AtomicInteger expeditionChallengeCount = new AtomicInteger(0);
+	public static AtomicInteger expeditionSuccessCount = new AtomicInteger(0);
+	public static AtomicInteger expeditionFailCount = new AtomicInteger(0);
+	public static AtomicInteger treasureRoadTryCount = new AtomicInteger(0);
+	public static AtomicInteger treasureRoadChallengeCount = new AtomicInteger(0);
+	public static AtomicInteger treasureRoadSuccessCount = new AtomicInteger(0);
+	public static AtomicInteger treasureRoadFailCount = new AtomicInteger(0);
 	public static AtomicInteger normalFinishCount = new AtomicInteger(0);
 	public static AtomicInteger errorFinishCount = new AtomicInteger(0);
 	public static AtomicInteger unexpectedFinishCount = new AtomicInteger(0);

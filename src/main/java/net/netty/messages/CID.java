@@ -17,5 +17,11 @@ public class CID
 
 	public static final int TOWERUP = 65;
 
+	public static final int Expedition = 67;
+
+	public static final int TreasureRoad = 108;
+
+	public static final int GUARDNPC = 112;
+
 	public static final int WORLDBOSS = 114;
 }

@@ -2,7 +2,7 @@ package net.netty;
 
 import common.utility.Debug;
 import common.utility.Pair;
-import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import net.netty.messages.inbound.*;
@@ -27,13 +27,17 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private static final int WORLDBOSSCHALLENGECOUNT = 1;
 	private static final int TOWERUPCHALLENGECOUNT = 1;
 	private static final int GUARDNPCCHALLENGECOUNT = 1;
+	private static final int EXPEDITIONCHALLENGECOUNT = 1;
+	private static final int TREASUREROADCHALLENGECOUNT = 1;
 
 	private static final boolean TEST_LOGIN = true;
 	private static final boolean TEST_PVE_COPY = true;
 	private static final boolean TEST_PVP_ARENA = true;
 	private static final boolean TEST_WORLD_BOSS = true;
 	private static final boolean TEST_TOWER_UP = true;
-	private static final boolean TEST_GUARD_NPC = false;
+	private static final boolean TEST_GUARD_NPC = true;
+	private static final boolean TEST_EXPEDITION = false;
+	private static final boolean TEST_TREASURE_ROAD = false;
 
 	private static final boolean STOP_ON_FINISH = true;
 
@@ -42,6 +46,10 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private int worldBossChallengeTimes = 0;
 	private int towerUpChallengeTimes = 0;
 	private int guardNPCChallengeTimes = 0;
+	private int expeditionChallengeTimes = 0;
+	private int treasureRoadChallengeTimes = 0;
+
+	private ETestStep currentTestStep = ETestStep.Login;
 
 	private boolean closeByMe = false;
 
@@ -162,7 +170,37 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				HandleTowerUpData(ctx, (TowerUpDataMsg)msg);
 				break;
 			case "TowerUpRankingMsg":
-				HandleTowerUpRankingMsg(ctx, (TowerUpRankingMsg)msg);
+				HandleTowerUpRanking(ctx, (TowerUpRankingMsg)msg);
+				break;
+			case "GuardNPCDataMsg":
+				HandleGuardNPCData(ctx, (GuardNPCDataMsg)msg);
+				break;
+			case "GuardNPCRankDataMsg":
+				HandleGuardNPCRankData(ctx, (GuardNPCRankDataMsg)msg);
+				break;
+			case "GuardNPCReckoningInfoMsg":
+				HandleGuardNPCReckoningInfo(ctx, (GuardNPCReckoningInfoMsg)msg);
+				break;
+			case "GuardNPCFailMsg":
+				HandleGuardNPCFail(ctx, (GuardNPCFailMsg)msg);
+				break;
+			case "ExpeditionDataMsg":
+				HandleExpeditionData(ctx, (ExpeditionDataMsg)msg);
+				break;
+			case "ExpeditionReckoningInfoMsg":
+				HandleExpeditionReckoningInfo(ctx, (ExpeditionReckoningInfoMsg)msg);
+				break;
+			case "TRoadDataMsg":
+				HandleTRoadData(ctx, (TRoadDataMsg) msg);
+				break;
+			case "TRoadOpponentMsg":
+				HandleTRoadOpponent(ctx, (TRoadOpponentMsg)msg);
+				break;
+			case "TreasureRoadReckoningInfoMsg":
+				HandleTreasureRoadReckoningInfo(ctx, (TreasureRoadReckoningInfoMsg)msg);
+				break;
+			case "TRoadHistoryMsg":
+				HandleTreasureRoadHistory(ctx, (TRoadHistoryMsg)msg);
 				break;
 			default:
 //				System.out.println("未处理的消息");
@@ -372,6 +410,40 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 						StartTestTowerUp(ctx, username);
 				}
 				break;
+			case (byte)217:
+				++guardNPCChallengeTimes;
+				if(msg.result == 0)
+				{
+					ProceedGuardNPC(ctx, msg);
+					MultiClient.guardNPCChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.err.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.result));
+					MultiClient.guardNPCFailCount.addAndGet(1);
+					if(guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
+						NextTest(ETestStep.GuardNPC, ctx, username);
+					else
+						StartTestGuardNPC(ctx, username);
+				}
+				break;
+			case (byte)211:
+				++expeditionChallengeTimes;
+				if (msg.result == 0)
+				{
+					ProceedExpedition(ctx, msg);
+					MultiClient.expeditionChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.out.println(String.format("[%s]请求挑战远征：[%d]", username, msg.result));
+					MultiClient.expeditionFailCount.addAndGet(1);
+					if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
+						NextTest(ETestStep.Expedition, ctx, username);
+					else
+						StartTestExpedition(ctx, username);
+				}
+				break;
 		}
 	}
 
@@ -379,17 +451,36 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		++arenaChallengeTimes;
-		if (msg.result == 0)
+		switch (msg.pvpType)
 		{
-			ProceedArena(ctx, msg);
-			MultiClient.arenaChallengeCount.addAndGet(1);
-		}
-		else
-		{
-			System.err.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
-			MultiClient.arenaFailCount.addAndGet(1);
-			StartTestArena(ctx, username);
+			case (byte)202:
+				++arenaChallengeTimes;
+				if (msg.result == 0)
+				{
+					ProceedArena(ctx, msg);
+					MultiClient.arenaChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.err.println(String.format("[%s]请求挑战竞技场失败：[%d]", username, msg.result));
+					MultiClient.arenaFailCount.addAndGet(1);
+					StartTestArena(ctx, username);
+				}
+				break;
+			case (byte)213:
+				++treasureRoadChallengeTimes;
+				if (msg.result == 0)
+				{
+					ProceedTreasureRoad(ctx, msg);
+					MultiClient.treasureRoadChallengeCount.addAndGet(1);
+				}
+				else
+				{
+					System.out.println(String.format("[%s]请求挑战夺宝：[%d]", username, msg.result));
+					MultiClient.treasureRoadFailCount.addAndGet(1);
+					StartTestTreasureRoad(ctx, username);
+				}
+				break;
 		}
 	}
 
@@ -438,15 +529,24 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
-		if (msg.result == 1)
+		switch (msg.type)
 		{
-			MultiClient.arenaSuccessCount.addAndGet(1);
-			System.out.println(String.format("[%s]竞技场战斗胜利，排名[%d]>>[%d]", username, msg.myOldRank, msg.myNewRank));
-		}
-		else
-		{
-			MultiClient.arenaFailCount.addAndGet(1);
-			System.err.println(String.format("[%s]竞技场战斗失败", username));
+			case 22:
+				if (msg.result == 1)
+				{
+					MultiClient.arenaSuccessCount.addAndGet(1);
+					System.out.println(String.format("[%s]竞技场战斗胜利，排名[%d]>>[%d]", username, msg.myOldRank, msg.myNewRank));
+				}
+				else
+				{
+					MultiClient.arenaFailCount.addAndGet(1);
+					System.err.println(String.format("[%s]竞技场战斗失败", username));
+				}
+				break;
+			case 86:
+				MultiClient.treasureRoadFailCount.addAndGet(1);
+				System.err.println(String.format("[%s]夺宝战斗失败", username));
+				break;
 		}
 	}
 
@@ -486,7 +586,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		System.out.println(String.format("[%s]爬塔 当前层[%d]", username, msg.curFloor));
 	}
 
-	private void HandleTowerUpRankingMsg(ChannelHandlerContext ctx, TowerUpRankingMsg msg) throws Exception
+	private void HandleTowerUpRanking(ChannelHandlerContext ctx, TowerUpRankingMsg msg) throws Exception
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
@@ -496,8 +596,115 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 			_StartTestTowerUpByRankData(ctx, msg, username);
 	}
 
+	private void HandleGuardNPCData(ChannelHandlerContext ctx, GuardNPCDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]守护洛羽 当前层[%d] 最高层[%d]", username, msg.challengeWave, msg.maxChallengeLevel));
+	}
+
+	private void HandleGuardNPCRankData(ChannelHandlerContext ctx, GuardNPCRankDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		if (guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
+			NextTest(ETestStep.GuardNPC, ctx, username);
+		else
+			_StartTestGuardNPCByRankData(ctx, msg, username);
+	}
+
+	private void HandleGuardNPCReckoningInfo(ChannelHandlerContext ctx, GuardNPCReckoningInfoMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		MultiClient.guardNPCSuccessCount.addAndGet(1);
+		System.out.println(String.format("[%s]守护洛羽战斗结束", username));
+		if (guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
+			NextTest(ETestStep.GuardNPC, ctx, username);
+		else
+			StartTestGuardNPC(ctx, username);
+	}
+
+	private void HandleGuardNPCFail(ChannelHandlerContext ctx, GuardNPCFailMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.err.println(String.format("[%s]请求挑战守护洛羽失败：[%d]", username, msg.failID));
+		MultiClient.guardNPCFailCount.addAndGet(1);
+		if(guardNPCChallengeTimes >= GUARDNPCCHALLENGECOUNT)
+			NextTest(ETestStep.GuardNPC, ctx, username);
+		else
+			StartTestGuardNPC(ctx, username);
+	}
+
+	private void HandleExpeditionData(ChannelHandlerContext ctx, ExpeditionDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]远征 最后通关[%d]", username, msg.customsPassData));
+	}
+
+	private void HandleExpeditionReckoningInfo(ChannelHandlerContext ctx, ExpeditionReckoningInfoMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		if (msg.result == 1)
+		{
+			MultiClient.expeditionSuccessCount.addAndGet(1);
+			System.out.println(String.format("[%s]远征战斗胜利", username));
+		}
+		else
+		{
+			MultiClient.expeditionFailCount.addAndGet(1);
+			System.err.println(String.format("[%s]远征战斗失败", username));
+		}
+		if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
+			NextTest(ETestStep.Expedition, ctx, username);
+		else
+			StartTestExpedition(ctx, username);
+	}
+
+	private void HandleTRoadData(ChannelHandlerContext ctx, TRoadDataMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]夺宝 挑战次数[%d / %d]", username, msg.leftCount, msg.allCount));
+	}
+
+	private void HandleTRoadOpponent(ChannelHandlerContext ctx, TRoadOpponentMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		if(currentTestStep == ETestStep.TreasureRoad)
+		{
+			if (treasureRoadChallengeTimes >= TREASUREROADCHALLENGECOUNT)
+				NextTest(ETestStep.TreasureRoad, ctx, username);
+			else
+				_StartTestTreasureRoadByOpponentInfo(ctx, msg, username);
+		}
+	}
+
+	private void HandleTreasureRoadReckoningInfo(ChannelHandlerContext ctx, TreasureRoadReckoningInfoMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		MultiClient.treasureRoadSuccessCount.addAndGet(1);
+		System.out.println(String.format("[%s]夺宝战斗胜利", username));
+		if (treasureRoadChallengeTimes >= TREASUREROADCHALLENGECOUNT)
+			NextTest(ETestStep.TreasureRoad, ctx, username);
+		else
+			StartTestTreasureRoad(ctx, username);
+	}
+
+	private void HandleTreasureRoadHistory(ChannelHandlerContext ctx, TRoadHistoryMsg msg) throws Exception
+	{
+		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
+		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+	}
+
 	private void StartTestCopy(ChannelHandlerContext ctx, String username)
 	{
+		currentTestStep = ETestStep.Copy;
 		RequestPVEMsg newMsg = new RequestPVEMsg();
 		newMsg.copyID = 10001;
 		newMsg.pveType = 101;
@@ -526,6 +733,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void StartTestArena(ChannelHandlerContext ctx, String username)
 	{
+		currentTestStep = ETestStep.Arena;
 		RequireArenaRankListMsg newMsg = new RequireArenaRankListMsg();
 		ctx.writeAndFlush(newMsg);
 	}
@@ -559,6 +767,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void StartTestWorldBoss(ChannelHandlerContext ctx, String username)
 	{
+		currentTestStep = ETestStep.WorldBoss;
 		{
 			RequireWorldBossDataMsg newMsg = new RequireWorldBossDataMsg();
 			ctx.write(newMsg);
@@ -603,6 +812,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void StartTestTowerUp(ChannelHandlerContext ctx, String username)
 	{
+		currentTestStep = ETestStep.TowerUp;
 		RequireTowerUpRankingMsg newMsg = new RequireTowerUpRankingMsg();
 		ctx.writeAndFlush(newMsg);
 	}
@@ -637,7 +847,111 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void StartTestGuardNPC(ChannelHandlerContext ctx, String username)
 	{
+		currentTestStep = ETestStep.GuardNPC;
+		RequestGuardNPCRankingMsg newMsg = new RequestGuardNPCRankingMsg();
+		ctx.writeAndFlush(newMsg);
+	}
 
+	private void _StartTestGuardNPCByRankData(ChannelHandlerContext ctx, GuardNPCRankDataMsg msg, String username)
+	{
+		RequestPVEMsg newMsg = new RequestPVEMsg();
+		newMsg.copyID = 80001;
+		newMsg.pveType = (byte)217;
+		System.out.println(String.format("[%s]挑战守护洛羽[%d]", username, newMsg.copyID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.guardNPCTryCount.addAndGet(1);
+	}
+
+	private void ProceedGuardNPC(ChannelHandlerContext ctx, RequestPVEReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			RefreshGuardNPCWaveMsg newMsg = new RefreshGuardNPCWaveMsg();
+			newMsg.updateWave = 1;
+			ctx.write(newMsg);
+		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void StartTestExpedition(ChannelHandlerContext ctx, String username)
+	{
+		currentTestStep = ETestStep.Expedition;
+		RequestPVEMsg newMsg = new RequestPVEMsg();
+		newMsg.copyID = 30001;
+		newMsg.pveType = (byte)211;
+		System.out.println(String.format("[%s]挑战远征[%d]", username, newMsg.copyID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.expeditionTryCount.addAndGet(1);
+	}
+
+	private void ProceedExpedition(ChannelHandlerContext ctx, RequestPVEReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			ExpeditionBattleWinMsg newMsg = new ExpeditionBattleWinMsg();
+			newMsg.playerHPRemain = msg.charAttributes[3];
+			ctx.write(newMsg);
+		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
+	}
+
+	private void StartTestTreasureRoad(ChannelHandlerContext ctx, String username)
+	{
+		currentTestStep = ETestStep.TreasureRoad;
+		RequireTRoadChangeOpponentMsg newMsg = new RequireTRoadChangeOpponentMsg();
+		ctx.writeAndFlush(newMsg);
+	}
+
+	private void _StartTestTreasureRoadByOpponentInfo(ChannelHandlerContext ctx, TRoadOpponentMsg msg, String username)
+	{
+		RequestPVPMsg newMsg = new RequestPVPMsg();
+		newMsg.opponentRoleID = msg.challengeTargets[0].roleID;
+		newMsg.type = (byte)213;
+		System.out.println(String.format("[%s]挑战夺宝[%s][%d]", username, msg.challengeTargets[0].nick, msg.challengeTargets[0].roleID));
+		ctx.writeAndFlush(newMsg);
+		MultiClient.treasureRoadTryCount.addAndGet(1);
+	}
+
+	private void ProceedTreasureRoad(ChannelHandlerContext ctx, RequestPVPReturnMsg msg)
+	{
+		{
+			SubmitStartBattleMsg newMsg = new SubmitStartBattleMsg();
+			ctx.write(newMsg);
+		}
+		{
+			RequestReckoningMsg newMsg = new RequestReckoningMsg();
+			newMsg.battleTime = 0;
+			newMsg.hpRemain = msg.charAttributes[3];
+			newMsg.playerAttributes = msg.charAttributes;
+			newMsg.turnAttributes = new int[0];
+			newMsg.result = 1;
+			ctx.write(newMsg);
+		}
+		ctx.flush();
 	}
 
 	private void NextTest(ETestStep currentStep, ChannelHandlerContext ctx, String username)
@@ -670,6 +984,16 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 登录测试完毕，开始测试守护洛羽
 					StartTestGuardNPC(ctx, username);
 				}
+				else if(TEST_EXPEDITION)
+				{
+					// 登录测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 登录测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
 				else if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -697,6 +1021,16 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战副本测试完毕，开始测试守护洛羽
 					StartTestGuardNPC(ctx, username);
 				}
+				else if(TEST_EXPEDITION)
+				{
+					// 挑战副本测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 挑战副本测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
 				else if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -719,6 +1053,16 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战竞技场测试完毕，开始测试守护洛羽
 					StartTestGuardNPC(ctx, username);
 				}
+				else if(TEST_EXPEDITION)
+				{
+					// 挑战竞技场测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 挑战竞技场测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
 				else if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -736,6 +1080,16 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战世界BOSS测试完毕，开始测试守护洛羽
 					StartTestGuardNPC(ctx, username);
 				}
+				else if(TEST_EXPEDITION)
+				{
+					// 挑战世界BOSS测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 挑战世界BOSS测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
 				else if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -748,6 +1102,16 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战爬塔测试完毕，开始测试守护洛羽
 					StartTestGuardNPC(ctx, username);
 				}
+				else if(TEST_EXPEDITION)
+				{
+					// 挑战爬塔测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 挑战爬塔测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
 				else if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -755,6 +1119,35 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				break;
 			case GuardNPC:
+				if(TEST_EXPEDITION)
+				{
+					// 挑战守护洛羽测试完毕，开始测试远征
+					StartTestExpedition(ctx, username);
+				}
+				else if(TEST_TREASURE_ROAD)
+				{
+					// 挑战守护洛羽测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case Expedition:
+				if(TEST_TREASURE_ROAD)
+				{
+					// 挑战远征测试完毕，开始测试夺宝
+					StartTestTreasureRoad(ctx, username);
+				}
+				else if (STOP_ON_FINISH)
+				{
+					// 啥都不测了，直接断开
+					StopTest(ctx);
+				}
+				break;
+			case TreasureRoad:
 				if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
@@ -782,5 +1175,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		WorldBoss,
 		TowerUp,
 		GuardNPC,
+		Expedition,
+		TreasureRoad,
 	}
 }
