@@ -54,6 +54,7 @@ public class MultiClient
 	public static AtomicInteger normalFinishCount = new AtomicInteger(0);
 	public static AtomicInteger errorFinishCount = new AtomicInteger(0);
 	public static AtomicInteger unexpectedFinishCount = new AtomicInteger(0);
+	public static AtomicInteger connectionCloseCount = new AtomicInteger(0);
 
 	private static Random rand = new Random();
 

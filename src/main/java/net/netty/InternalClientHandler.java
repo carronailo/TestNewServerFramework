@@ -39,7 +39,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	private static final boolean TEST_EXPEDITION = true;
 	private static final boolean TEST_TREASURE_ROAD = true;
 
-	private static final boolean STOP_ON_FINISH = true;
+	private static final boolean WAIT_FOR_CONNECTION_TIMEOUT = true;
 
 	private int arenaChallengeTimes = 0;
 	private int copyChallengeTimes = 0;
@@ -92,6 +92,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		System.out.println(String.format("[%s]断开连接", ((ExtendedNioSocketChannel) ctx.channel()).username));
 		if(!closeByMe)
 			MultiClient.unexpectedFinishCount.addAndGet(1);
+		MultiClient.connectionCloseCount.addAndGet(1);
 	}
 
 
@@ -213,6 +214,11 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 
 	private void HandleEcho(final ChannelHandlerContext ctx, EchoMsg msg) throws Exception
 	{
+		if(currentTestStep == ETestStep.Fin && WAIT_FOR_CONNECTION_TIMEOUT)
+		{
+			// 不处理服务器Echo，这样就可以达到等待服务器Echo超时自动关闭连接的目的
+			return;
+		}
 		EchoReturnMsg newMsg = new EchoReturnMsg();
 		newMsg.index = msg.Index;
 		newMsg.time = System.currentTimeMillis();
@@ -439,7 +445,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.out.println(String.format("[%s]请求挑战远征：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战远征失败：[%d]", username, msg.result));
 					MultiClient.expeditionFailCount.addAndGet(1);
 					if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
 						NextTest(ETestStep.Expedition, ctx, username);
@@ -678,6 +684,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		Debug.Assert((ctx.channel() instanceof ExtendedNioSocketChannel), "Channel类型不是ExtendedNioSocketChannel");
 		String username = ((ExtendedNioSocketChannel) ctx.channel()).username;
+		System.out.println(String.format("[%s]夺宝 收到对手信息", username));
 		if(currentTestStep == ETestStep.TreasureRoad)
 		{
 			if (treasureRoadChallengeTimes >= TREASUREROADCHALLENGECOUNT)
@@ -1018,7 +1025,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 登录测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1055,7 +1062,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战副本测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1087,7 +1094,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战竞技场测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1114,7 +1121,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战世界BOSS测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1136,7 +1143,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战爬塔测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1153,7 +1160,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战守护洛羽测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1165,14 +1172,13 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 					// 挑战远征测试完毕，开始测试夺宝
 					StartTestTreasureRoad(ctx, username);
 				}
-				else if (STOP_ON_FINISH)
+				else
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
 				}
 				break;
 			case TreasureRoad:
-				if (STOP_ON_FINISH)
 				{
 					// 啥都不测了，直接断开
 					StopTest(ctx);
@@ -1187,8 +1193,12 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 	{
 		ctx.flush();
 		closeByMe = true;
-		ctx.close();
 		MultiClient.normalFinishCount.addAndGet(1);
+		currentTestStep = ETestStep.Fin;
+		if(!WAIT_FOR_CONNECTION_TIMEOUT)
+		{
+			ctx.close();
+		}
 	}
 
 	private enum ETestStep
@@ -1201,5 +1211,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		GuardNPC,
 		Expedition,
 		TreasureRoad,
+
+		Fin,
 	}
 }
