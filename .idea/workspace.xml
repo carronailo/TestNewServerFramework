@@ -9,8 +9,6 @@
     <list default="true" id="5ad7eb48-f467-4c64-b18b-ae7b39b11403" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/RobotTest.java" afterPath="$PROJECT_DIR$/src/main/java/RobotTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientHandler.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +23,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InternalClientHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InternalClientHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="94" column="54" lean-forward="false" selection-start-line="94" selection-start-column="54" selection-end-line="94" selection-end-column="54" />
+            <state relative-caret-position="68">
+              <caret line="71" column="25" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelInboundHandlerAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="454">
+              <caret line="130" column="24" lean-forward="true" selection-start-line="130" selection-start-column="24" selection-end-line="130" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelHandlerContext.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelHandlerContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractChannelHandlerContext.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/AbstractChannelHandlerContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -70,9 +98,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="935">
               <caret line="55" column="21" lean-forward="false" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
-              <folding>
-                <marker date="1505907743894" expanded="true" signature="3291:3615" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,18 +106,121 @@
       <file leaf-file-name="MultiClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="49" />
+            <state relative-caret-position="151">
+              <caret line="106" column="41" lean-forward="true" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RobotTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="InternalClientEncoder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientEncoder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InternalClientDecoder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SingleClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="54" column="11" lean-forward="false" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RobotTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+            <state relative-caret-position="151">
+              <caret line="108" column="54" lean-forward="false" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelFutureListener.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelFutureListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestNetty.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/TestNetty.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenericFutureListener.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/util/concurrent/GenericFutureListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConcurrentLinkedQueue.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="471">
+              <caret line="254" column="11" lean-forward="false" selection-start-line="254" selection-start-column="11" selection-end-line="254" selection-end-column="11" />
+              <folding>
+                <element signature="e#10037#10038#0" expanded="true" />
+                <element signature="e#10084#10085#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Future.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/util/concurrent/Future.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="54" column="14" lean-forward="false" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Collection.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Collection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="408" column="20" lean-forward="false" selection-start-line="408" selection-start-column="20" selection-end-line="408" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExtendedNioSocketChannel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/ExtendedNioSocketChannel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,6 +246,8 @@
       <find>请求挑战远征</find>
       <find>System.err</find>
       <find>夺宝 挑战次数</find>
+      <find>StringBuilder</find>
+      <find>FutureListener</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,7 +261,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/WorldBossSubmitHurtValue.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/BeginChallengeWorldBoss.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/BeginChallengeWorldBossMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireWorldBossDataMsg.java" />
@@ -179,8 +309,9 @@
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/MID.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GameTipsMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RobotTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/InternalClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RobotTest.java" />
       </list>
     </option>
   </component>
@@ -232,6 +363,285 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+              <item name="netty" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+              <item name="netty" type="1f31426a:PackageElementNode" />
+              <item name="messages" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+              <item name="netty" type="1f31426a:PackageElementNode" />
+              <item name="messages" type="1f31426a:PackageElementNode" />
+              <item name="inbound" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+              <item name="netty" type="1f31426a:PackageElementNode" />
+              <item name="messages" type="1f31426a:PackageElementNode" />
+              <item name="outbound" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="channel" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="channel" type="1f31426a:PackageElementNode" />
+              <item name="nio" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="channel" type="1f31426a:PackageElementNode" />
+              <item name="socket" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="channel" type="1f31426a:PackageElementNode" />
+              <item name="socket" type="1f31426a:PackageElementNode" />
+              <item name="nio" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="handler" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="handler" type="1f31426a:PackageElementNode" />
+              <item name="codec" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="handler" type="1f31426a:PackageElementNode" />
+              <item name="codec" type="1f31426a:PackageElementNode" />
+              <item name="compression" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="handler" type="1f31426a:PackageElementNode" />
+              <item name="codec" type="1f31426a:PackageElementNode" />
+              <item name="json" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="handler" type="1f31426a:PackageElementNode" />
+              <item name="codec" type="1f31426a:PackageElementNode" />
+              <item name="xml" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="io.netty" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+              <item name="concurrent" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="lang" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="lang" type="1f31426a:PackageElementNode" />
+              <item name="reflect" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="text" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+              <item name="concurrent" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+              <item name="concurrent" type="1f31426a:PackageElementNode" />
+              <item name="atomic" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="java" type="1f31426a:PackageElementNode" />
+              <item name="util" type="1f31426a:PackageElementNode" />
+              <item name="function" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="javafx" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="javafx" type="1f31426a:PackageElementNode" />
+              <item name="css" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="org" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="org" type="1f31426a:PackageElementNode" />
+              <item name="junit" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="org" type="1f31426a:PackageElementNode" />
+              <item name="junit" type="1f31426a:PackageElementNode" />
+              <item name="runners" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="org" type="1f31426a:PackageElementNode" />
+              <item name="junit" type="1f31426a:PackageElementNode" />
+              <item name="runners" type="1f31426a:PackageElementNode" />
+              <item name="model" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="sun" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="sun" type="1f31426a:PackageElementNode" />
+              <item name="misc" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="sun" type="1f31426a:PackageElementNode" />
+              <item name="nio" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+              <item name="sun" type="1f31426a:PackageElementNode" />
+              <item name="nio" type="1f31426a:PackageElementNode" />
+              <item name="ch" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -299,160 +709,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="net" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="net" type="1f31426a:PackageElementNode" />
-              <item name="netty" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="net" type="1f31426a:PackageElementNode" />
-              <item name="netty" type="1f31426a:PackageElementNode" />
-              <item name="messages" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="net" type="1f31426a:PackageElementNode" />
-              <item name="netty" type="1f31426a:PackageElementNode" />
-              <item name="messages" type="1f31426a:PackageElementNode" />
-              <item name="inbound" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="net" type="1f31426a:PackageElementNode" />
-              <item name="netty" type="1f31426a:PackageElementNode" />
-              <item name="messages" type="1f31426a:PackageElementNode" />
-              <item name="outbound" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="io.netty" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="io.netty" type="1f31426a:PackageElementNode" />
-              <item name="channel" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-              <item name="lang" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-              <item name="lang" type="1f31426a:PackageElementNode" />
-              <item name="reflect" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-              <item name="util" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-              <item name="util" type="1f31426a:PackageElementNode" />
-              <item name="concurrent" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="java" type="1f31426a:PackageElementNode" />
-              <item name="util" type="1f31426a:PackageElementNode" />
-              <item name="concurrent" type="1f31426a:PackageElementNode" />
-              <item name="atomic" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="javafx" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="javafx" type="1f31426a:PackageElementNode" />
-              <item name="css" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="junit" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="junit" type="1f31426a:PackageElementNode" />
-              <item name="runners" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="junit" type="1f31426a:PackageElementNode" />
-              <item name="runners" type="1f31426a:PackageElementNode" />
-              <item name="model" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -462,7 +718,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
-    <property name="SearchEverywhereHistoryKey" value="RobotTe&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java&#10;Modifier&#9;PSI&#9;JAVA://java.lang.reflect.Modifier&#10;robott&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java" />
+    <property name="SearchEverywhereHistoryKey" value="SocketChannelIm&#9;PSI&#9;JAVA://sun.nio.ch.SocketChannelImpl&#10;RobotTe&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java&#10;Modifier&#9;PSI&#9;JAVA://java.lang.reflect.Modifier&#10;robott&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
@@ -521,7 +777,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="RobotTest" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="127.0.0.1:6868 1 20" />
+      <option name="PROGRAM_PARAMETERS" value="127.0.0.1:6868 20000000 20" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -535,7 +791,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="RobotTest" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="120.92.16.58:6868 10 20" />
+      <option name="PROGRAM_PARAMETERS" value="120.92.16.58:6868 20000000 33" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -839,25 +1095,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1684435" sideWeight="0.3873776" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.343852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21695095" sideWeight="0.61262244" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21908316" sideWeight="0.61262244" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.16791044" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1444563" sideWeight="0.47595358" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31447226" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37867248" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.16791044" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1444563" sideWeight="0.5240464" order="7" side_tool="true" content_ui="tabs" />
     </layout>
@@ -886,99 +1142,15 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="76" />
+      <option name="time" value="78" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/EchoServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTowerUpDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/TowerUpRank.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/TowerUpRankingMsg.java" />
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelHandlerContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="124" column="17" lean-forward="false" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/TowerUpDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossRankDataMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTowerUpRankingMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/config/excel/tables/ConfigTableMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data/config/excel/tables/UserRoleTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/BoxAwardInfo.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/GuardNPCRecord.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequestGuardNPCRankingMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RefreshGuardNPCWaveMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCRankDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCFailMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCReckoningInfoMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireExpeditionDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/ExpeditionBattleWinMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/EnterWorldMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/ExpeditionDataMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/PVEReckoningInfoMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/ExpeditionReckoningInfoMsg.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTRoadDataMsg.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/CharacterSimpleData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,9 +1194,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="55" column="21" lean-forward="false" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
-          <folding>
-            <marker date="1505907743894" expanded="true" signature="3291:3615" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,26 +1216,253 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java">
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/compression/LzfDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="49" />
+        <state relative-caret-position="255">
+          <caret line="110" column="63" lean-forward="false" selection-start-line="110" selection-start-column="61" selection-end-line="110" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/xml/XmlDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        <state relative-caret-position="377">
+          <caret line="59" column="75" lean-forward="true" selection-start-line="59" selection-start-column="75" selection-end-line="59" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/json/JsonObjectDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1365">
+          <caret line="86" column="63" lean-forward="false" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/text/DateFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4463">
+          <caret line="342" column="24" lean-forward="false" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="1027" column="18" lean-forward="false" selection-start-line="1027" selection-start-column="18" selection-end-line="1027" selection-end-column="18" />
+          <folding>
+            <element signature="e#6390#6391#0" expanded="false" />
+            <element signature="e#6438#6439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/concurrent/atomic/AtomicInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="204" column="29" lean-forward="false" selection-start-line="204" selection-start-column="29" selection-end-line="204" selection-end-column="29" />
+          <folding>
+            <element signature="e#2032#2033#0" expanded="false" />
+            <element signature="e#2060#2061#0" expanded="false" />
+            <element signature="e#5214#5215#0" expanded="false" />
+            <element signature="e#5290#5291#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="357" column="21" lean-forward="false" selection-start-line="357" selection-start-column="21" selection-end-line="357" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/sun/nio/ch/SocketChannelImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/AbstractChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/nio/AbstractNioChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="48" column="58" lean-forward="false" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/nio/AbstractNioByteChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="62" lean-forward="false" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/socket/nio/NioSocketChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/ExtendedNioSocketChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/ByteToMessageDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="340" column="16" lean-forward="false" selection-start-line="340" selection-start-column="16" selection-end-line="340" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/AbstractChannelHandlerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelHandlerContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="130" column="24" lean-forward="true" selection-start-line="130" selection-start-column="24" selection-end-line="130" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/function/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="408" column="20" lean-forward="false" selection-start-line="408" selection-start-column="20" selection-end-line="408" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/util/concurrent/Future.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="54" column="14" lean-forward="false" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="254" column="11" lean-forward="false" selection-start-line="254" selection-start-column="11" selection-end-line="254" selection-end-column="11" />
+          <folding>
+            <element signature="e#10037#10038#0" expanded="true" />
+            <element signature="e#10084#10085#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/util/concurrent/GenericFutureListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/TestNetty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="54" column="11" lean-forward="false" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/MultiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="106" column="41" lean-forward="true" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/ChannelFutureListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/InternalClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="94" column="54" lean-forward="false" selection-start-line="94" selection-start-column="54" selection-end-line="94" selection-end-column="54" />
+        <state relative-caret-position="68">
+          <caret line="71" column="25" lean-forward="false" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="108" column="54" lean-forward="false" selection-start-line="108" selection-start-column="54" selection-end-line="108" selection-end-column="54" />
           <folding />
         </state>
       </provider>
