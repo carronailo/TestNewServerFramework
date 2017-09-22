@@ -86,6 +86,8 @@ public class RobotTest
 //					fs.add(client.StartClient(i, "172.31.32.12", 6868, bootstrap));        // 内网IP
 //					fs.add(client.StartClient(i, "127.0.0.1", 6868, bootstrap));
 					ChannelFuture f = client.StartClient(i, host, port, bootstrap);
+					if(f == null)
+						continue;
 					fs.put(i, f);
 					final int index = i;
 					f.addListener(new ChannelFutureListener() {
@@ -104,7 +106,7 @@ public class RobotTest
 		{
 			try
 			{
-				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
+				System.err.println(String.format("%s(1): 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get(), MultiClient.connectionCloseCount.get()));
 				System.err.println(String.format("\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
@@ -128,7 +130,7 @@ public class RobotTest
 		{
 			try
 			{
-				System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
+				System.err.println(String.format("%s(2): 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
 					MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get(), MultiClient.connectionCloseCount.get()));
 				System.err.println(String.format("\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 					MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),
@@ -146,7 +148,7 @@ public class RobotTest
 			{
 			}
 		}
-		System.err.println(String.format("%s: 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
+		System.err.println(String.format("%s(3): 结束[n: %d, e: %d, u: %d, c: %d]", timeOnlyFormatter.format(new Date()),
 			MultiClient.normalFinishCount.get(), MultiClient.errorFinishCount.get(), MultiClient.unexpectedFinishCount.get(), MultiClient.connectionCloseCount.get()));
 		System.err.println(String.format("\t\t登录[t: %d, s: %d, f: %d], 副本[t: %d, c: %d, s: %d, f: %d], 竞技场[t: %d, c: %d, s: %d, f: %d], 世界Boss[t: %d, c: %d, s: %d, f: %d]",
 			MultiClient.loginTryCount.get(), MultiClient.loginSuccessCount.get(), MultiClient.loginFailCount.get(),

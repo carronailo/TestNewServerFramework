@@ -445,7 +445,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 				}
 				else
 				{
-					System.err.println(String.format("[%s]请求挑战远征失败：[%d]", username, msg.result));
+					System.out.println(String.format("[%s]请求挑战远征失败：[%d]", username, msg.result));
 					MultiClient.expeditionFailCount.addAndGet(1);
 					if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
 						NextTest(ETestStep.Expedition, ctx, username);
@@ -665,7 +665,7 @@ public class InternalClientHandler extends ChannelInboundHandlerAdapter
 		else
 		{
 			MultiClient.expeditionFailCount.addAndGet(1);
-			System.err.println(String.format("[%s]远征战斗失败", username));
+			System.out.println(String.format("[%s]远征战斗失败", username));
 		}
 		if (expeditionChallengeTimes >= EXPEDITIONCHALLENGECOUNT)
 			NextTest(ETestStep.Expedition, ctx, username);
