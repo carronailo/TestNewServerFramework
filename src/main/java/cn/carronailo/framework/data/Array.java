@@ -1,10 +1,10 @@
-package data.config;
+package cn.carronailo.framework.data;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ARRAY
+public @interface Array
 {
-	int SIZE() default 0;
+	int size() default 0;
 }

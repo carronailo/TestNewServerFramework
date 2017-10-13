@@ -1,8 +1,8 @@
-package data.config.excel.tables;
+package cn.carronailo.framework.data.excel.tables;
 
+import cn.carronailo.framework.data.DataType;
 import common.utility.PackageScanner;
-import data.config.CONF;
-import data.config.TYPE;
+import cn.carronailo.framework.data.DataSource;
 
 import java.util.*;
 
@@ -52,12 +52,12 @@ public class ConfigTableMap
 				for(String configTable : configTableNames)
 				{
 					Class<?> c = Class.forName(configTable);
-					CONF confAnnotation = c.getAnnotation(CONF.class);
-					if(confAnnotation != null && confAnnotation.TYPE() == TYPE.EXCEL
-						&& !confAnnotation.FILE().isEmpty() && !confAnnotation.INFO().isEmpty())
+					DataSource dataSourceAnnotation = c.getAnnotation(DataSource.class);
+					if(dataSourceAnnotation != null && dataSourceAnnotation.type() == DataType.EXCEL
+						&& !dataSourceAnnotation.file().isEmpty() && !dataSourceAnnotation.category().isEmpty())
 					{
-						Map<String, Class> tmp = configTableMap.computeIfAbsent(confAnnotation.FILE(), m -> new HashMap<>());
-						tmp.put(confAnnotation.INFO(), c);
+						Map<String, Class> tmp = configTableMap.computeIfAbsent(dataSourceAnnotation.file(), m -> new HashMap<>());
+						tmp.put(dataSourceAnnotation.category(), c);
 					}
 				}
 			}

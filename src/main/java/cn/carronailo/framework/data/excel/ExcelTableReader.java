@@ -1,45 +1,30 @@
-package data.config.excel;
+package cn.carronailo.framework.data.excel;
 
-import data.config.ARRAY;
-import data.config.CONF;
-import data.config.TYPE;
-import data.config.excel.tables.ConfigTableMap;
-import data.config.excel.tables.UserRoleTable;
-import data.config.exceptions.ConfigParseException;
-import data.config.exceptions.ConfigTableNotExistsException;
-import data.config.exceptions.UnsupportConfigColumnException;
+import cn.carronailo.framework.data.Array;
+import cn.carronailo.framework.data.DataSource;
+import cn.carronailo.framework.data.DataType;
+import cn.carronailo.framework.data.excel.exceptions.ExcelTableCellParseException;
+import cn.carronailo.framework.data.excel.tables.ConfigTableMap;
+import cn.carronailo.framework.data.excel.exceptions.ExcelTableNotExistsException;
+import cn.carronailo.framework.data.excel.exceptions.UnsupportedExcelTableColumnException;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ConfigReader
+public class ExcelTableReader
 {
-	public static void main(String[] args)
-	{
-		ConfigTableMap.getInstance();
-
-		ConfigReader reader = new ConfigReader("resources/");
-//		reader.readAll();
-		UserRoleTable[] userRoleTableContent = reader.getConfig(UserRoleTable.class);
-		for(UserRoleTable userRole : userRoleTableContent)
-		{
-			System.out.println(String.format("username:%s, roleid:%d", userRole.userName, userRole.roleid));
-		}
-	}
-
 	private String configPath = "";
 
 	private Map<Class, Object> configTableContents = new HashMap<>();
 
 	private DecimalFormat integerFormatter = new DecimalFormat("#");
 
-	public ConfigReader(String configPath)
+	public ExcelTableReader(String configPath)
 	{
 		this.configPath = configPath;
 	}
@@ -65,13 +50,12 @@ public class ConfigReader
 		Object configContents = configTableContents.get(clazz);
 		if(configContents == null)
 		{
-			CONF confAnnotation = clazz.getAnnotation(CONF.class);
-			if(confAnnotation != null && confAnnotation.TYPE() == TYPE.EXCEL
-				&& !confAnnotation.FILE().isEmpty() && !confAnnotation.INFO().isEmpty())
+			DataSource dataSourceAnnotation = clazz.getAnnotation(DataSource.class);
+			if(dataSourceAnnotation != null && dataSourceAnnotation.type() == DataType.EXCEL
+				&& !dataSourceAnnotation.file().isEmpty() && !dataSourceAnnotation.category().isEmpty())
 			{
-				readOne(configPath.concat(confAnnotation.FILE()), confAnnotation.INFO(), clazz);
+				configContents = readOne(configPath.concat(dataSourceAnnotation.file()), dataSourceAnnotation.category(), clazz);
 			}
-			configContents = configTableContents.get(clazz);
 		}
 		return (T[])configContents;
 	}
@@ -91,7 +75,7 @@ public class ConfigReader
 				configTableContents.put(tableClazz, content);
 			}
 			else
-				throw new ConfigTableNotExistsException(String.format("%s[%s]", file, sheet));
+				throw new ExcelTableNotExistsException(String.format("%s[%s]", file, sheet));
 			wb.close();
 		}
 		catch (Exception ex)
@@ -104,7 +88,7 @@ public class ConfigReader
 	private Object readContent(Sheet sheet, Class<?> tableClazz) throws Exception
 	{
 		int total = sheet.getLastRowNum();
-		Object contentArray = Array.newInstance(tableClazz, total);
+		Object contentArray = java.lang.reflect.Array.newInstance(tableClazz, total);
 		for(int i = 0 ; i < total ; ++i)
 		{
 			Row row = sheet.getRow(i + 1);
@@ -113,7 +97,7 @@ public class ConfigReader
 				Iterator<Cell> it = row.cellIterator();
 				Object content = readRowContent(tableClazz, it);
 				if(content != null)
-					Array.set(contentArray, i, content);
+					java.lang.reflect.Array.set(contentArray, i, content);
 				else
 					System.out.println(String.format("配置表读取错误：表[%s]第[%d]行", sheet.getSheetName(), i + 1));
 			}
@@ -185,17 +169,17 @@ public class ConfigReader
 			else if (fieldClazz.isArray())
 				readArrayField(obj, field, cellIterator);
 			else if (fieldClazz.isEnum())
-				throw new UnsupportConfigColumnException(obj, field.getName());
+				throw new UnsupportedExcelTableColumnException(obj, field.getName());
 			else
 				readCustomField(obj, field, cellIterator);
 		}
-		catch (ConfigParseException | UnsupportConfigColumnException ex)
+		catch (ExcelTableCellParseException | UnsupportedExcelTableColumnException ex)
 		{
 			throw ex;
 		}
 		catch (Exception ex)
 		{
-			throw new ConfigParseException(obj, field.getName(), ex);
+			throw new ExcelTableCellParseException(obj, field.getName(), ex);
 		}
 	}
 
@@ -222,29 +206,29 @@ public class ConfigReader
 		else if (fieldClazz == double.class)
 			field.setDouble(obj, c != null ? readCellDoubleValue(c) : 0.0);
 		else if (fieldClazz == void.class)
-			throw new UnsupportConfigColumnException(obj, field.getName());
+			throw new UnsupportedExcelTableColumnException(obj, field.getName());
 		else if (fieldClazz == String.class)
 			field.set(obj, c != null ? readCellStringValue(c) : "");
 		else
-			throw new UnsupportConfigColumnException(obj, field.getName());
+			throw new UnsupportedExcelTableColumnException(obj, field.getName());
 	}
 
 	private void readArrayField(Object obj, Field field, Iterator<Cell> cellIterator) throws Exception
 	{
 		Class<?> elemClazz = field.getType().getComponentType();
-		ARRAY arrayAnnotation = field.getAnnotation(ARRAY.class);
+		Array arrayAnnotation = field.getAnnotation(Array.class);
 		if(arrayAnnotation != null)
 		{
-			short len = (short)arrayAnnotation.SIZE();
-			Object newArray = Array.newInstance(elemClazz, len);
+			short len = (short) arrayAnnotation.size();
+			Object newArray = java.lang.reflect.Array.newInstance(elemClazz, len);
 			if(elemClazz.isPrimitive() || elemClazz == String.class)
 			{
 				for (int i = 0; i < len; ++i)
 				{
 					Object elem = readPrimitive(elemClazz, cellIterator);
 					if (elem == null)
-						throw new ConfigParseException(obj, field.getName());
-					Array.set(newArray, i, elem);
+						throw new ExcelTableCellParseException(obj, field.getName());
+					java.lang.reflect.Array.set(newArray, i, elem);
 				}
 			}
 			else
@@ -253,21 +237,21 @@ public class ConfigReader
 				{
 					Object elem = readObject(elemClazz, cellIterator);
 					if (elem == null)
-						throw new ConfigParseException(obj, field.getName());
-					Array.set(newArray, i, elem);
+						throw new ExcelTableCellParseException(obj, field.getName());
+					java.lang.reflect.Array.set(newArray, i, elem);
 				}
 			}
 			field.set(obj, newArray);
 		}
 		else
-			throw new UnsupportConfigColumnException(obj, field.getName());
+			throw new UnsupportedExcelTableColumnException(obj, field.getName());
 	}
 
 	private void readCustomField(Object obj, Field field, Iterator<Cell> cellIterator) throws Exception
 	{
 		Object fieldObj = readObject(field.getType(), cellIterator);
 		if (fieldObj == null)
-			throw new ConfigParseException(obj, field.getName());
+			throw new ExcelTableCellParseException(obj, field.getName());
 		field.set(obj, fieldObj);
 	}
 

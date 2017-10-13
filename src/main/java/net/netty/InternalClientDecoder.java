@@ -219,7 +219,7 @@ public class InternalClientDecoder extends ByteToMessageDecoder
 		Field f = null;
 		try
 		{
-			f = clazz.getField("TYPE");
+			f = clazz.getField("DataType");
 
 		}
 		catch(NoSuchFieldException ignored)

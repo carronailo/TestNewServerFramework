@@ -7,8 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ad7eb48-f467-4c64-b18b-ae7b39b11403" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/data/excel/UserRoleTable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataSource.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/UnsupportedExcelTableColumnException.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/data/config/CONF.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/data/config/TYPE.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/data/config/excel/tables/UserRoleTable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/data/config/exceptions/UnsupportConfigColumnException.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java" afterPath="$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/RobotTest.java" afterPath="$PROJECT_DIR$/src/main/java/RobotTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/database/redis/RedissonAccess.java" afterPath="$PROJECT_DIR$/src/main/java/database/redis/RedissonAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/net/netty/InternalClientDecoder.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/ARRAY.java" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/Array.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/excel/ConfigReader.java" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/ExcelTableReader.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/excel/TestPOI.java" afterPath="$PROJECT_DIR$/src/test/java/cn/carronailo/framework/data/excel/test/TestPOI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/excel/tables/ConfigTableMap.java" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/tables/ConfigTableMap.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/exceptions/ConfigParseException.java" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableCellParseException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/exceptions/ConfigTableNotExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableNotExistsException.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/ini/.gitkeep" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/ini/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/jason/.gitkeep" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/jason/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/data/config/xml/.gitkeep" afterPath="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/xml/.gitkeep" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,54 +42,146 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JedisAccess.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java">
+      <file leaf-file-name="ExcelTableReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/ExcelTableReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+            <state relative-caret-position="170">
+              <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
               <folding>
-                <element signature="e#783#784#0" expanded="true" />
-                <element signature="e#803#804#0" expanded="true" />
+                <element signature="e#1468#1498#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseObjectPoolConfig.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/BaseObjectPoolConfig.java">
+      <file leaf-file-name="ExcelTableNotExistsException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableNotExistsException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
+            <state relative-caret-position="34">
+              <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestExcelTableReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/TestExcelTableReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding>
-                <element signature="e#20059#20060#0" expanded="true" />
-                <element signature="e#20119#20120#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericObjectPoolConfig.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/GenericObjectPoolConfig.java">
+      <file leaf-file-name="TestPOI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/carronailo/framework/data/excel/test/TestPOI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-              <folding>
-                <element signature="e#2597#2598#0" expanded="true" />
-                <element signature="e#2637#2638#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JedisPool.java" pinned="false" current-in-tab="false">
-        <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPool.java">
+      <file leaf-file-name="EchoServerHandlerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/netty/test/EchoServerHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="225" column="32" lean-forward="false" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
-              <folding>
-                <element signature="e#482#483#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigTableMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/tables/ConfigTableMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-592">
+              <caret line="28" column="58" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExcelTableCellParseException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableCellParseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PackageScanner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/common/utility/PackageScanner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RobotTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRoleTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/data/excel/UserRoleTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/TestUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Array.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/Array.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataSource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataSource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,7 +189,7 @@
       <file leaf-file-name="Jedis.java" pinned="false" current-in-tab="false">
         <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Jedis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
+            <state relative-caret-position="56423">
               <caret line="3378" column="16" lean-forward="false" selection-start-line="3378" selection-start-column="16" selection-end-line="3378" selection-end-column="16" />
               <folding />
             </state>
@@ -98,7 +209,7 @@
       <file leaf-file-name="PooledObjectFactory.java" pinned="false" current-in-tab="false">
         <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/PooledObjectFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
+            <state relative-caret-position="969">
               <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
               <folding />
             </state>
@@ -108,7 +219,7 @@
       <file leaf-file-name="Pool.java" pinned="false" current-in-tab="false">
         <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/util/Pool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="578">
               <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
               <folding />
             </state>
@@ -131,7 +242,7 @@
       <file leaf-file-name="Protocol.java" pinned="false" current-in-tab="false">
         <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Protocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
+            <state relative-caret-position="255">
               <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
               <folding />
             </state>
@@ -175,27 +286,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/BeginChallengeWorldBossMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireWorldBossDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireWorldBossRankDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/WorldBossHurtPerHitMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/WorldBossSubmitHurtValueMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireUpdateArenaInfoMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/CharacterSimpleData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/WorldBossRank.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossRandDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossRankDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/WorldBossBattleResultMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTowerUpRanking.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTowerUpDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTowerUpRankingMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/TowerUpDataMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/TowerUpRank.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/TowerUpRankingMsg.java" />
-        <option value="$PROJECT_DIR$/src/main/java/data/config/excel/tables/UserRoleTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/BoxAwardInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCDataMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/GuardNPCRecord.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GuardNPCRankDataMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequestGuardNPCRankingMsg.java" />
@@ -226,6 +316,27 @@
         <option value="$PROJECT_DIR$/src/main/java/RobotTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/netty/SingleClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/redis/RedissonAccess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/config/excel/tables/UserRoleTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/config/CONF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/data/config/excel/ConfigReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data/config/excel/UserRoleTable.java" />
+        <option value="$PROJECT_DIR$/src/test/java/framework/data/config/test/TestPOI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/data/config/TYPE.java" />
+        <option value="$PROJECT_DIR$/src/main/java/framework/data/config/ConfigType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/config/ConfigType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/DataType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/ARRAY.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/CONF.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataDefine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/data/excel/UserRoleTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataSource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/ArrayDefine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/Array.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/TestExcelTableReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/tables/ConfigTableMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/ExcelTableReader.java" />
       </list>
     </option>
   </component>
@@ -253,11 +364,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -277,8 +388,113 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Local Unit Tests">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="TestNewServerFramework" type="cbb8eebc:String" user="TestNewServerFramework" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="TestNewServerFramework" type="cbb8eebc:String" user="TestNewServerFramework" />
+              <item name="src/test/java" type="cbb8eebc:String" user="src/test/java" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="TestNewServerFramework" type="cbb8eebc:String" user="TestNewServerFramework" />
+              <item name="src/test/java" type="cbb8eebc:String" user="src/test/java" />
+              <item name="net/netty/test" type="cbb8eebc:String" user="net/netty/test" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+              <item name="excel" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="framework" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="framework" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="framework" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+              <item name="excel" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="framework" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+              <item name="excel" type="1f31426a:PackageElementNode" />
+              <item name="exceptions" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="cn.carronailo" type="1f31426a:PackageElementNode" />
+              <item name="framework" type="1f31426a:PackageElementNode" />
+              <item name="data" type="1f31426a:PackageElementNode" />
+              <item name="excel" type="1f31426a:PackageElementNode" />
+              <item name="tables" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="common" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="common" type="1f31426a:PackageElementNode" />
+              <item name="utility" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
+              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
+              <item name="net" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,7 +526,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TestNewServerFramework" type="b2602c69:ProjectViewProjectNode" />
@@ -318,8 +534,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="net" type="462c0819:PsiDirectoryNode" />
-              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="excel" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TestNewServerFramework" type="b2602c69:ProjectViewProjectNode" />
@@ -342,94 +558,13 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
             <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="database.redis" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="apache" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="apache" type="1f31426a:PackageElementNode" />
-              <item name="commons" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="apache" type="1f31426a:PackageElementNode" />
-              <item name="commons" type="1f31426a:PackageElementNode" />
-              <item name="pool2" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="org" type="1f31426a:PackageElementNode" />
-              <item name="apache" type="1f31426a:PackageElementNode" />
-              <item name="commons" type="1f31426a:PackageElementNode" />
-              <item name="pool2" type="1f31426a:PackageElementNode" />
-              <item name="impl" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="redis.clients" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="redis.clients" type="1f31426a:PackageElementNode" />
-              <item name="jedis" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="redis.clients" type="1f31426a:PackageElementNode" />
-              <item name="jedis" type="1f31426a:PackageElementNode" />
-              <item name="exceptions" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="TestNewServerFramework" type="58d84e3e:PackageViewProjectNode" />
-              <item name="TestNewServerFramework" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-              <item name="redis.clients" type="1f31426a:PackageElementNode" />
-              <item name="util" type="1f31426a:PackageElementNode" />
+              <item name="TestNewServerFramework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestNewServerFramework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -444,8 +579,8 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
-    <property name="SearchEverywhereHistoryKey" value="SocketChannelIm&#9;PSI&#9;JAVA://sun.nio.ch.SocketChannelImpl&#10;RobotTe&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java&#10;Modifier&#9;PSI&#9;JAVA://java.lang.reflect.Modifier&#10;robott&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel" />
+    <property name="SearchEverywhereHistoryKey" value="RTopic&#9;PSI&#9;JAVA://org.redisson.api.RTopic&#10;SocketChannelIm&#9;PSI&#9;JAVA://sun.nio.ch.SocketChannelImpl&#10;RobotTe&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java&#10;Modifier&#9;PSI&#9;JAVA://java.lang.reflect.Modifier&#10;robott&#9;FILE&#9;file://G:/GitHub/TestNewServerFramework/src/main/java/RobotTest.java" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
@@ -453,6 +588,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cn.carronailo.framework.data" />
+      <recent name="cn.carronailo.framework.data.excel" />
       <recent name="data.config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -471,20 +608,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.JedisTest">
-    <configuration name="ConfigReader" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.TestExcelTableReader">
+    <configuration name="All in TestNewServerFramework" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="data.config.excel.ConfigReader" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <module name="TestNewServerFramework" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="TestNewServerFramework" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
       <envs />
+      <patterns />
     </configuration>
     <configuration name="JedisTest" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -556,9 +699,23 @@
       <module name="TestNewServerFramework" />
       <envs />
     </configuration>
+    <configuration name="TestExcelTableReader" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="cn.carronailo.framework.data.excel.TestExcelTableReader" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="TestNewServerFramework" />
+      <envs />
+    </configuration>
     <configuration name="TestPOI" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="data.config.excel.TestPOI" />
+      <option name="MAIN_CLASS_NAME" value="cn.carronailo.framework.data.excel.test.TestPOI" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -768,14 +925,15 @@
       <envs />
       <method />
     </configuration>
-    <list size="7">
+    <list size="8">
       <item index="0" class="java.lang.String" itemvalue="Application.MultiClient" />
       <item index="1" class="java.lang.String" itemvalue="Application.TestPOI" />
       <item index="2" class="java.lang.String" itemvalue="Application.SingleClient" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ConfigReader" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TestExcelTableReader" />
       <item index="4" class="java.lang.String" itemvalue="Application.RobotTest" />
       <item index="5" class="java.lang.String" itemvalue="Application.RobotTest Local" />
       <item index="6" class="java.lang.String" itemvalue="Application.JedisTest" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.All in TestNewServerFramework" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -816,6 +974,11 @@
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="All_in_TestNewServerFramework - 2017.10.13 at 15h 35m 48s.xml">
+      <configuration name="All in TestNewServerFramework" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -826,7 +989,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -838,13 +1001,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1684435" sideWeight="0.3873776" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34306568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34276387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24093817" sideWeight="0.61262244" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.16791044" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25159913" sideWeight="0.61262244" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1444563" sideWeight="0.47595358" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -856,6 +1018,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.16791044" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1444563" sideWeight="0.5240464" order="7" side_tool="true" content_ui="tabs" />
     </layout>
@@ -884,95 +1047,15 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="81" />
+      <option name="time" value="82" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/CID.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/MID.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="21" lean-forward="false" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/inbound/GameTipsMsg.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/lang/System.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTRoadOpponentMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/messages/outbound/RequireTRoadChangeOpponentMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/compression/LzfDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="110" column="63" lean-forward="false" selection-start-line="110" selection-start-column="61" selection-end-line="110" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/xml/XmlDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="59" column="75" lean-forward="true" selection-start-line="59" selection-start-column="75" selection-end-line="59" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/handler/codec/json/JsonObjectDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1365">
-          <caret line="86" column="63" lean-forward="false" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/text/DateFormat.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Date.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/concurrent/atomic/AtomicInteger.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/sun/misc/Unsafe.class" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/sun/nio/ch/SocketChannelImpl.class" />
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/AbstractChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/nio/AbstractNioByteChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="39" column="62" lean-forward="false" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/io/netty/netty-all/4.1.11.Final/netty-all-4.1.11.Final-sources.jar!/io/netty/channel/socket/nio/NioSocketChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/netty/ExtendedNioSocketChannel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,7 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2499">
           <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1003,7 +1084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1972">
           <caret line="130" column="24" lean-forward="false" selection-start-line="130" selection-start-column="24" selection-end-line="130" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,7 +1093,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="54" column="14" lean-forward="false" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,7 +1101,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1030,7 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1038,7 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1054,7 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="19" column="57" lean-forward="false" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1062,7 +1136,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,7 +1143,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,7 +1150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1093,7 +1164,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="108" column="25" lean-forward="false" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1101,15 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="91" column="33" lean-forward="false" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,7 +1178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="43" column="40" lean-forward="false" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,14 +1185,96 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="856" column="28" lean-forward="false" selection-start-line="856" selection-start-column="28" selection-end-line="856" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPoolConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+          <folding>
+            <element signature="e#783#784#0" expanded="false" />
+            <element signature="e#803#804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/RedissonAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/PooledObjectFactory.java">
+    <entry file="jar://E:/.m2/repository/org/redisson/redisson/3.4.3/redisson-3.4.3-sources.jar!/org/redisson/api/RTopic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
+        <state relative-caret-position="204">
+          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/org/redisson/redisson/3.4.3/redisson-3.4.3-sources.jar!/org/redisson/RedissonTopic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="65" column="73" lean-forward="false" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/org/redisson/redisson/3.4.3/redisson-3.4.3-sources.jar!/org/redisson/client/protocol/RedisCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4029">
+          <caret line="300" column="0" lean-forward="false" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/BaseObjectPoolConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8653">
+          <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
+          <folding>
+            <element signature="e#20059#20060#0" expanded="false" />
+            <element signature="e#20119#20120#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/GenericObjectPoolConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+          <folding>
+            <element signature="e#2597#2598#0" expanded="false" />
+            <element signature="e#2637#2638#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3536">
+          <caret line="225" column="32" lean-forward="false" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
+          <folding>
+            <element signature="e#482#483#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Jedis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56423">
+          <caret line="3378" column="16" lean-forward="false" selection-start-line="3378" selection-start-column="16" selection-end-line="3378" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1145,41 +1287,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPoolConfig.java">
+    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/PooledObjectFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="969">
+          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Protocol.java">
+    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/util/Pool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        <state relative-caret-position="578">
+          <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/GenericObjectPoolConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="79" column="16" lean-forward="false" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
-          <folding>
-            <element signature="e#2597#2598#0" expanded="true" />
-            <element signature="e#2637#2638#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2-sources.jar!/org/apache/commons/pool2/impl/BaseObjectPoolConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
-          <folding>
-            <element signature="e#20059#20060#0" expanded="true" />
-            <element signature="e#20119#20120#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1194,40 +1314,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/util/Pool.java">
+    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Protocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="46" column="11" lean-forward="false" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
+        <state relative-caret-position="255">
+          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/JedisPool.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/netty/test/EchoServerHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="225" column="32" lean-forward="false" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
+        <state relative-caret-position="153">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/carronailo/framework/data/excel/test/TestPOI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/TestUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/DataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/Array.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/data/excel/UserRoleTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/common/utility/PackageScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RobotTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableCellParseException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/exceptions/ExcelTableNotExistsException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/TestExcelTableReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
-            <element signature="e#482#483#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/.m2/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar!/redis/clients/jedis/Jedis.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/tables/ConfigTableMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="3378" column="16" lean-forward="false" selection-start-line="3378" selection-start-column="16" selection-end-line="3378" selection-end-column="16" />
+        <state relative-caret-position="-592">
+          <caret line="28" column="58" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/redis/JedisAccess.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/carronailo/framework/data/excel/ExcelTableReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+        <state relative-caret-position="170">
+          <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
           <folding>
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
+            <element signature="e#1468#1498#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1291,6 +1497,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

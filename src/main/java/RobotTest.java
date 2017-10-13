@@ -1,14 +1,13 @@
 import common.utility.Pair;
-import data.config.excel.ConfigReader;
-import data.config.excel.tables.ConfigTableMap;
-import data.config.excel.tables.UserRoleTable;
+import cn.carronailo.framework.data.excel.ExcelTableReader;
+import cn.carronailo.framework.data.excel.tables.ConfigTableMap;
+import cn.carronailo.data.excel.UserRoleTable;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
 import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 import net.netty.InternalClientHandler;
 import net.netty.MultiClient;
 import net.netty.messages.InBoundMessageMap;
@@ -17,7 +16,6 @@ import net.netty.messages.OutBoundMessageMap;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by CarroNailo on 2017/9/11 10:24 for TestNewServerFramework.
@@ -31,7 +29,7 @@ public class RobotTest
 	{
 		ConfigTableMap.getInstance();
 
-		ConfigReader reader = new ConfigReader("resources/");
+		ExcelTableReader reader = new ExcelTableReader("resources/");
 		UserRoleTable[] userRoleTableContent = reader.getConfig(UserRoleTable.class);
 
 		InBoundMessageMap.getInstance();
@@ -55,7 +53,7 @@ public class RobotTest
 				Pair<String, Integer> p = Pair.makePair(userRole.userName, 1002 + rand.nextInt(3));
 				InternalClientHandler.userQueue.add(p);
 			}
-			InternalClientHandler.roleList.add(userRole.roleid);
+			InternalClientHandler.roleList.add(userRole.roleID);
 		}
 
 		MultiClient client = new MultiClient();

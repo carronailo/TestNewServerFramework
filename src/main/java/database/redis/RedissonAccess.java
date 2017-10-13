@@ -22,6 +22,8 @@ public class RedissonAccess
 		redisConfig.setCodec(new FstCodec()).useSingleServer().setAddress("127.0.0.1:6379").setPassword("1qaz2wsx").setDatabase(1);
 		RedissonClient client = Redisson.create(redisConfig);
 
+		client.getAtomicLong("lijing");
+
 		RBucket<database.redis.TestUser> bucket = client.getBucket("user1");
 		TestUser user1 = bucket.get();
 		if (user1 == null)
@@ -64,7 +66,7 @@ public class RedissonAccess
 //		{
 //			System.out.println(o);
 //		}
-//		RBucket<database.redis.TestUser> bucket = client.getBucket("lijing1");
+//		RBucket<database.database.TestUser> bucket = client.getBucket("lijing1");
 //		bucket.set(user1);
 //		RBucket<TestUser> bucket = client.getBucket("lijing1");
 //		TestUser user = bucket.get();
